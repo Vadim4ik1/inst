@@ -14,7 +14,6 @@ $user_id=$_SESSION['user']['fio'];
                     if(!empty($p_z[1])){
                          
                     $button_update=1;
-                    $input_answer=$p_z[4];
                      }
                      else{
                     $button_update=0; 
@@ -38,301 +37,269 @@ echo($number_question);
 </head>
 
 <body>
-    <div class="container-up">
-        <?php echo($_SESSION['user']['fio']);?>
-        <img src="../../style/img/image5.png" alt="">
-    </div>
-    <div class="sidenav">
-        <div class="hr">
-            <hr>
-        </div>
-        <a href="#about"><?= $_SESSION['user']['groupp']?></a>
-        <div class="hr">
-            <hr>
-        </div>
-        <a href="../../admin_page.php">ЛИЧНЫЙ КАБИНЕТ</a>
-        <div class="hr">
-            <hr>
-        </div>
-        <a href="../people/allpeople.php">СПИСОК ПОЛЬЗОВАТЕЛЕЙ</a>
-        <div class="hr">
-            <hr>
-        </div>
-        <a style="color:red;" href="../kurs/kurses.php">РАЗДЕЛЫ</a>
-        <div class="hr">
-            <hr>
-        </div>
-        <a href="#contact">ТЕСТЫ</a>
-        <div class="hr">
-            <hr>
-        </div>
-        <a href="#contact">ОТЧЕТЫ</a>
-        <div class="hr">
-            <hr>
-        </div>
-        <a href="../term/term.php">БАЗА ЗНАНИЙ</a>
-        <div class="hr">
-            <hr>
-        </div>
-        <a href="../group/group.php">ГРУППЫ</a>
-        <a href="../signinup/admin_signin.php">зарегать человека</a> <br>
-        <a href="../kurs/add_kurs.php">Добавить курс</a> <br>
-        <a href="../signinup/signin.php">Удалить курс</a> <br>
-        <a href="../inc/singup/logout.php">выйти</a>
-    </div>
-    <div class="main">
-    <div class="vopros">
-                <?php
+
+    <div class="main-test">
+        <div class="vopros">
+            <?php
 
 $numb_q = mysqli_query($connect, "SELECT * FROM `test` WHERE `id_test`=$id_test");
 $numb_q = mysqli_fetch_all($numb_q);
 foreach ($numb_q as $numb_q) {
     ?>
-      <form action="test_a_.php" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="type_question" value="<?= $numb_q[10]?>">
-            <input type="hidden" name="id_question" value="<?= $numb_q[0]?>">
-            <input type="hidden" name="number_question" value="<?= $numb_q[11] ?>">
-            <input type="hidden" name="id_test" value="<?= $id_test ?>">
-            <input type="submit" value="<?= $numb_q[11] ?>"  id="vopros_<?=$numb_q[11]?>">
+            <form action="test_a_.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="type_question" value="<?= $numb_q[10]?>">
+                <input type="hidden" name="id_question" value="<?= $numb_q[0]?>">
+                <input type="hidden" name="number_question" value="<?= $numb_q[11] ?>">
+                <input type="hidden" name="id_test" value="<?= $id_test ?>">
+                <input type="submit" value="<?= $numb_q[11] ?>" id="vopros_<?=$numb_q[11]?>">
 
-            <?php 
-            $test_h = mysqli_query($connect, "SELECT * FROM `test_history` WHERE `id_test`='$id_test' AND `id_user`='$user_id' ");
+                <?php 
+            $test_h = mysqli_query($connect, "SELECT * FROM `test_history` WHERE `id_test`='$id_test' AND `id_user`='$user_id' AND `id_user`='$user_id' ");
             $test_h = mysqli_fetch_all($test_h);  
             foreach ($test_h as $test_h) {
-                if($test_h[3]==$numb_q[0]){
-                    ?> 
                 
+                if($test_h[3] == $numb_q[0]){
+                    ?>
+
                 <script>
                     var element = document.getElementById("vopros_<?=$numb_q[11]?>");
                     element.classList.add("bg-green");
-                </script> 
-                    <?php
+                </script>
+                <?php
                 }
                 ?>
 
-             
-            <?php
+
+                <?php
             }
              ?>
-
-                </form>
-                <?php
-
+            </form>
+            <?php
 }   
     ?></div>
-
-
-
-                    <?php 
-
+        <?php 
                                 $numb_q = mysqli_query($connect, "SELECT * FROM `test` WHERE `number_q`=$number_question AND `id_test`=$id_test");
                                 $numb_q = mysqli_fetch_all($numb_q);
                                 if(!empty($numb_q[1])){
-                                   ?> 
-                                <form action="test.php" method="post" enctype="multipart/form-data">
-                                <input type="hidden" value="id_test" value="<?= $id_test ?>"> 
-                                   <input type="submit" value="Закончить тест"> 
-                                </form>
-                                   <?php
+                                   ?>
+        <form action="test.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" value="id_test" value="<?= $id_test ?>">
+            <input type="submit" value="Закончить тест">
+        </form>
+        <?php
                                 }
                                 else{
 
                             
                                 foreach ($numb_q as $numb_q) {
                                    
-                                ?> 
-                                        <form  action="test.php"  method="post" enctype="multipart/form-data">
+                                ?>
+        <form method="post" id="insert_answer_form" enctype="multipart/form-data">
 
-                                <p>Вопрос : <?=$numb_q[1] ?></p>
-                                <?php if($numb_q[10]=="input" && $button_update==0){?>
-                                    <input type="text" name="answer">
-                                    
+            <p>Вопрос : <?=$numb_q[1] ?></p>
+            <?php if($numb_q[10]=="input" && $button_update==0){?>
+            <input type="text" name="answer">
 
-                                <?php }elseif($numb_q[10]=="input" && $button_update==1){?>
-                            <input type="text" name="answer" value="<?=$input_answer?>">
 
-                              <?php 
+            <?php }elseif($numb_q[10]=="input" && $button_update==1){
+            $cttt = mysqli_query($connect, "SELECT * FROM `test_history` WHERE `id_test`='$id_test' AND `id_user`='$user_id' AND `id_user`='$user_id' ");
+            $cttt = mysqli_fetch_all($cttt);
+           
+             foreach ($cttt as $cttt) {
+             
+             $answer_input=$cttt[4];
+             }
+                ?>
+            <input type="text" name="answer" value="<?=$answer_input?>">
+
+            <?php 
                                 }
                                 
                                 ?>
-                               
-                   
-                                 <?php if($numb_q[10]=="check"){?>
-                                    <div class="group">
-                                    
-                                <?php 
-                                $id_quest=$numb_q[0];              
-                                $check_test_inpt = mysqli_query($connect, "SELECT * FROM `test_history` WHERE `id_test`='$id_test' AND `id_user`='$user_id' AND `id_question`='$id_quest' ");
-                                $check_test_inpt = mysqli_fetch_all($check_test_inpt);
-            if(empty($check_test_inpt)){?>
-                    <p><?= $numb_q[2]?>
-                    <input type="checkbox" name="answer" value="<?= $numb_q[2]?> "></p>
-                    <p><?= $numb_q[3]?>
-                    <input type="checkbox" name="answer_2" value="<?= $numb_q[3]?> "></p>
-                    <p><?= $numb_q[4]?>
-                    <input type="checkbox" name="answer_3" value="<?= $numb_q[4]?> "></p>
-                    <p><?= $numb_q[5]?>
-                    <input type="checkbox" name="answer_4" value="<?= $numb_q[5]?> "></p>
-                    <p><?= $numb_q[6]?>
-                    <input type="checkbox" name="answer_5" value="<?= $numb_q[6]?> "></p>
-                    <p><?= $numb_q[7]?>
-                    <input type="checkbox" name="answer_6" value="<?= $numb_q[7]?> "></p>
 
-           <?php }
+
+            <?php if($numb_q[10]=="check"){?>
+            <div class="group">
+
+                <?php 
+        $id_quest=$numb_q[0];              
+        $check_test_inpt = mysqli_query($connect, "SELECT * FROM `test_history` WHERE `id_test`='$id_test' AND `id_user`='$user_id' AND `id_question`='$id_quest' ");
+        $check_test_inpt = mysqli_fetch_all($check_test_inpt);
+            if(empty($check_test_inpt)){?>
+                <p><?= $numb_q[2]?>
+                    <input type="checkbox" name="answer" value="<?= $numb_q[2]?>"></p>
+                    
+                <input type="hidden" name="type_question" value="<?= $numb_q[10]?>">
+                <input type="hidden" name="id_question" value="<?= $numb_q[0]?>">
+                <input type="hidden" name="number_question" value="<?= $number_question ?>">
+                <input type="hidden" name="id_test" value="<?= $id_test ?>">
+                <p><?= $numb_q[3]?>
+                    <input type="checkbox" name="answer_2" value="<?= $numb_q[3]?>"></p>
+                <p><?= $numb_q[4]?>
+                    <input type="checkbox" name="answer_3" value="<?= $numb_q[4]?>"></p>
+                <p><?= $numb_q[5]?>
+                    <input type="checkbox" name="answer_4" value="<?= $numb_q[5]?>"></p>
+                <p><?= $numb_q[6]?>
+                    <input type="checkbox" name="answer_5" value="<?= $numb_q[6]?>"></p>
+                <p><?= $numb_q[7]?>
+                    <input type="checkbox" name="answer_6" value="<?= $numb_q[7]?>"></p>
+
+                <?php }
             else{
             foreach ($check_test_inpt as $cti) { 
       
-                ?>    <p><?= $numb_q[2]?>
-                    <?php if($numb_q[2]==$cti[4]){?>
-                    
-                    <input type="checkbox" name="answer" checked value="<?= $numb_q[2]?> "></p>
+                ?> <p><?= $numb_q[2]?>
+                    <?php if($numb_q[2] == $cti[4]){?>
+                    <input type="checkbox" name="answer" checked value="<?= $numb_q[2]?>"></p>
                 <?php  } 
-                  elseif($numb_q[2]==$cti[5]){?>
-                    <input type="checkbox" name="answer" checked value="<?= $numb_q[2]?> "></p>
+                elseif($numb_q[2] == $cti[5]){?>
+                <input type="checkbox" name="answer" checked value="<?= $numb_q[2]?>"></p>
                 <?php  } 
-                    elseif($numb_q[2]==$cti[6]){?>
-                    <input type="checkbox" name="answer" checked value="<?= $numb_q[2]?> "></p>
+                elseif($numb_q[2] == $cti[6]){?>
+                <input type="checkbox" name="answer" checked value="<?= $numb_q[2]?>"></p>
                 <?php  } 
                 else{?>
-                    <input type="checkbox" name="answer"  value="<?= $numb_q[2]?> "></p>
-               <?php } ?>
-             <p><?= $numb_q[3]?>
-            <?php if($numb_q[3]==$cti[4]){?>
-                <input type="checkbox" name="answer_2" checked value="<?= $numb_q[3]?> "></p>
-            <?php  } 
-              elseif($numb_q[3]==$cti[5]){?>
-                <input type="checkbox" name="answer_2" checked value="<?= $numb_q[3]?> "></p>
-            <?php  } 
-                elseif($numb_q[3]==$cti[6]){?>
-                <input type="checkbox" name="answer_2" checked value="<?= $numb_q[3]?> "></p>
-            <?php  } 
+                <input type="checkbox" name="answer" value="<?= $numb_q[2]?>"></p>
+                <?php } ?>
+                <p><?= $numb_q[3]?>
+                    <?php if($numb_q[3] == $cti[4]){?>
+                    <input type="checkbox" name="answer_2" checked value="<?= $numb_q[3]?>"></p>
+                <?php  } 
+              elseif($numb_q[3] == $cti[5]){?>
+                <input type="checkbox" name="answer_2" checked value="<?= $numb_q[3]?>"></p>
+                <?php  } 
+                elseif($numb_q[3] == $cti[6]){?>
+                <input type="checkbox" name="answer_2" checked value="<?= $numb_q[3]?>"></p>
+                <?php  } 
             else{?>
-                <input type="checkbox" name="answer_2"  value="<?= $numb_q[3]?> "></p>
-           <?php } ?>
-                    
-           <p><?= $numb_q[4]?>
-            <?php if($numb_q[4]==$cti[4]){?>
-                <input type="checkbox" name="answer_3" checked value="<?= $numb_q[4]?> "></p>
-            <?php  } 
-              elseif($numb_q[4]==$cti[5]){?>
-                <input type="checkbox" name="answer_3" checked value="<?= $numb_q[4]?> "></p>
-            <?php  } 
-                elseif($numb_q[4]==$cti[6]){?>
-                <input type="checkbox" name="answer_3" checked value="<?= $numb_q[4]?> "></p>
-            <?php  } 
+                <input type="checkbox" name="answer_2" value="<?= $numb_q[3]?>"></p>
+                <?php } ?>
+                <p><?= $numb_q[4]?>
+                    <?php if($numb_q[4] == $cti[4]){?>
+                    <input type="checkbox" name="answer_3" checked value="<?= $numb_q[4]?>"></p>
+                <?php  } 
+              elseif($numb_q[4] == $cti[5]){?>
+                <input type="checkbox" name="answer_3" checked value="<?= $numb_q[4]?>"></p>
+                <?php  } 
+                elseif($numb_q[4] == $cti[6]){?>
+                <input type="checkbox" name="answer_3" checked value="<?= $numb_q[4]?>"></p>
+                <?php  } 
             else{?>
-                <input type="checkbox" name="answer_3"  value="<?= $numb_q[4]?> "></p>
-           <?php } ?>
-           <p><?= $numb_q[5]?>
-            <?php if($numb_q[5]==$cti[4]){?>
-                <input type="checkbox" name="answer_4" checked value="<?= $numb_q[5]?> "></p>
-            <?php  } 
-              elseif($numb_q[5]==$cti[5]){?>
-                <input type="checkbox" name="answer_4" checked value="<?= $numb_q[5]?> "></p>
-            <?php  } 
-                elseif($numb_q[5]==$cti[6]){?>
-                <input type="checkbox" name="answer_4" checked value="<?= $numb_q[5]?> "></p>
-            <?php  } 
+                <input type="checkbox" name="answer_3" value="<?= $numb_q[4]?>"></p>
+                <?php } ?>
+                <p><?= $numb_q[5]?>
+                    <?php
+                if($numb_q[5] == $cti[4]){?>
+                    <input type="checkbox" name="answer_4" checked value="<?= $numb_q[5]?>"></p>
+                <?php  } 
+              elseif($numb_q[5] == $cti[5]){?>
+                <input type="checkbox" name="answer_4" checked value="<?= $numb_q[5]?>"></p>
+                <?php  } 
+                elseif($numb_q[5] == $cti[6]){?>
+                <input type="checkbox" name="answer_4" checked value="<?= $numb_q[5]?>"></p>
+                <?php  } 
             else{?>
-                <input type="checkbox" name="answer_4"  value="<?= $numb_q[5]?> "></p>
-           <?php } ?>
-           <p><?= $numb_q[6]?>
-            <?php if($numb_q[6]==$cti[4]){?>
-                <input type="checkbox" name="answer_5" checked value="<?= $numb_q[6]?> "></p>
-            <?php  } 
-              elseif($numb_q[6]==$cti[5]){?>
-                <input type="checkbox" name="answer_5" checked value="<?= $numb_q[6]?> "></p>
-            <?php  } 
-                elseif($numb_q[6]==$cti[6]){?>
-                <input type="checkbox" name="answer_5" checked value="<?= $numb_q[6]?> "></p>
-            <?php  } 
+                <input type="checkbox" name="answer_4" value="<?= $numb_q[5]?>"></p>
+                <?php } ?>
+                <p><?= $numb_q[6]?>
+                    <?php if($numb_q[6] == $cti[4]){?>
+                    <input type="checkbox" name="answer_5" checked value="<?= $numb_q[6]?>"></p>
+                <?php  } 
+              elseif($numb_q[6] == $cti[5]){?>
+                <input type="checkbox" name="answer_5" checked value="<?= $numb_q[6]?>"></p>
+                <?php  } 
+                elseif($numb_q[6] == $cti[6]){?>
+                <input type="checkbox" name="answer_5" checked value="<?= $numb_q[6]?>"></p>
+                <?php  } 
             else{?>
-                <input type="checkbox" name="answer_5"  value="<?= $numb_q[6]?> "></p>
-           <?php } ?>
-           <p><?= $numb_q[7]?>
-            <?php if($numb_q[7]==$cti[4]){?>
-                <input type="checkbox" name="answer_6" checked value="<?= $numb_q[7]?> "></p>
-            <?php  } 
-              elseif($numb_q[7]==$cti[5]){?>
-                <input type="checkbox" name="answer_6" checked value="<?= $numb_q[7]?> "></p>
-            <?php  } 
-                elseif($numb_q[7]==$cti[6]){?>
-                <input type="checkbox" name="answer_6" checked value="<?= $numb_q[7]?> "></p>
-            <?php  } 
+                <input type="checkbox" name="answer_5" value="<?= $numb_q[6]?>"></p>
+                <?php } ?>
+                <p><?= $numb_q[7]?>
+                    <?php if($numb_q[7] == $cti[4]){?>
+                    <input type="checkbox" name="answer_6" checked value="<?= $numb_q[7]?>"></p>
+                <?php  } 
+              elseif($numb_q[7] == $cti[5]){?>
+                <input type="checkbox" name="answer_6" checked value="<?= $numb_q[7]?>"></p>
+                <?php  } 
+                elseif($numb_q[7] == $cti[6]){?>
+                <input type="checkbox" name="answer_6" checked value="<?= $numb_q[7]?>"></p>
+                <?php  } 
             else{?>
-                <input type="checkbox" name="answer_6"  value="<?= $numb_q[7]?> "></p>
-           <?php } ?>
+                <input type="checkbox" name="answer_6" value="<?= $numb_q[7]?>"></p>
+                <?php } ?>
 
 
-            <?php }}?>
+                <?php }}?>
 
-                         
 
-                                 <?php  } ?>
-                                 </div>
-                            <input type="hidden" name="type_question" value="<?= $numb_q[10]?>">
-                            <input type="hidden" name="id_question" value="<?= $numb_q[0]?>">
-                            <input type="hidden" name="number_question" value="<?= $number_question ?>">
-                            <input type="hidden" name="id_test" value="<?= $id_test ?>">
-                            <?php 
+
+                <?php  } ?>
+
+                <input type="hidden" name="type_question" value="<?= $numb_q[10]?>">
+                <input type="hidden" name="id_question" value="<?= $numb_q[0]?>">
+                <input type="hidden" name="number_question" value="<?= $number_question ?>">
+                <input type="hidden" name="id_test" value="<?= $id_test ?>">
+            </div>
+
+            <?php }   }?>
+
+        </form>
+        <?php 
                             if($button_update==0){
                                 ?>
-                                <input type="submit"  value="Сохранить" >
-                            <?php
+        <input type="submit" value="Сохранить ответ" class="but_insert_answer" id="but_insert_answer">
+        <?php
                             }
                             else{
                                 ?>
-                                <input type="submit" value="Обновить" >
-                            <?php
+        <input type="submit" value="Обновить" class="but_insert_answer" id="but_update_answer">
+        <?php
                             }
                             ?>
-                        
-                                     <?php }   }?> 
-                                  
+        <form action="../../inc/test/test_end.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id_test" value="<?= $id_test ?>">
+            <input type="submit" value="Завершить тест">
         </form>
+        <input type="submit" value="Обновить" class="but_insert_answer disp-false" id="but_update_answer">
 
-                            <form action="../../inc/test/test_end.php" method="post" enctype="multipart/form-data">
-                            <input type="hidden" name="id_test" value="<?= $id_test ?>">
-                            <input type="submit" value="Завершить тест" >
-                            </form>
-    </body>
-                </html>
+    </div>
 
-                <script>
+</body>
 
-	$(".group input").on("click", function() {
+</html>
 
-		if($(".group input:checked").length >= 3) { 
-			
-			$(".group input:not(:checked)").attr("disabled", true);
-		
-		} else {
-			
-			$(".group input:disabled").attr("disabled", false);
-		
-		}
 
-	});
-	
-</script>
-<input type="submit"  id="but_update_answer" value="123Обновить" >
+<script type="text/javascript">
+    var but_update_answer = document.getElementById("but_update_answer");
+    var but_insert_answer = document.getElementById("but_insert_answer");
 
-<script type="text/javascript" >
-            $("#but_update_answer1").click(function(event){
-                alert("vse ok");
+    document.querySelector("#but_insert_answer").onclick = function () {
         $.ajax({
-        type: "POST",
-        url: "../../inc/test/update_answer.php",
-        data: $('#update_answer_form').serialize(),
-       
-        success: function(response) {
-            alert("vse ok");
-         }
+            type: "POST",
+            url: "../../inc/test/test_first_q.php",
+            data: $('#insert_answer_form').serialize(),
+
+            success: function (response) {
+                alert($('#insert_answer_form').serialize());
+                but_insert_answer.classList.add("disp-false");
+                but_update_answer.classList.add("disp-true");
+            }
         });
+    }
+</script>
+<script type="text/javascript">
+    document.querySelector("#but_update_answer").onclick = function () {
+        $.ajax({
+            type: "POST",
+            url: "../../inc/test/update_answer.php",
+            data: $('#insert_answer_form').serialize(),
+
+            success: function (response) {
+                alert($('#insert_answer_form').serialize());
+                but_insert_answer.classList.add("disp-false");
+                but_update_answer.classList.add("disp-true");
+            }
         });
 
-});
-
-        </script>
-
-
+    }
+</script>

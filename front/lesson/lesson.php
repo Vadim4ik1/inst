@@ -79,7 +79,7 @@ foreach ($tn as $tn) {
     <div class="main-lec">
         <div class="container-razdels">
             <?php $lesson = mysqli_query($connect, "SELECT * FROM `lesson` WHERE `id_lesson`=$id_lesson ");
-		$lesson = mysqli_fetch_all($lesson);
+		    $lesson = mysqli_fetch_all($lesson);
 		foreach ($lesson as $lesson) {
            
             ?>
@@ -100,9 +100,13 @@ foreach ($tn as $tn) {
        
                     <?php }?>
                     <?php
-                     $th = mysqli_query($connect, "SELECT * FROM `test_history` WHERE `id_user`='$id_user' AND `id_test`='$id_test' ");
+                     $th = mysqli_query($connect, "SELECT `type_test` FROM `test_history` WHERE `id_user`='$id_user' AND `id_test`='$id_test'  LIMIT 1 ");
                      $th = mysqli_fetch_all($th);
-                     if($th=="ended"){
+            
+                     foreach ($th as $th) { 
+                        $th_ended=$th[0];
+                     }
+                     if($th_ended=="ended"){
                         echo("Тест пройден");
                      }else{
                        

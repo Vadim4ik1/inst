@@ -24,18 +24,19 @@ $user_id=$_SESSION['user']['fio'];
 
 <body>
 
-    <div class="main">
+    <div class="main-test">
     <div class="vopros">
                 <?php
 
                 $numb_q = mysqli_query($connect, "SELECT * FROM `test` WHERE `id_test`=$id_test");
                 $numb_q = mysqli_fetch_all($numb_q);
+                $number_question_test_a=2;
                 foreach ($numb_q as $numb_q) {
                     ?>
                       <form action="test_a_.php" method="post" enctype="multipart/form-data">
                       <input type="hidden" name="type_question" value="<?= $numb_q[10]?>">
                             <input type="hidden" name="id_question" value="<?= $numb_q[0]?>">
-                            <input type="hidden" name="number_question" value="<?= $number_question ?>">
+                            <input type="hidden" name="number_question" value="<?= $number_question_test_a ?>">
                             <input type="hidden" name="id_test" value="<?= $id_test ?>">
                                 
                         
@@ -67,7 +68,7 @@ $user_id=$_SESSION['user']['fio'];
                 }   
                     ?>
 </div>
-        <form action="test.php" method="post" enctype="multipart/form-data">
+        <form method="post" id="insert_answer_form" enctype="multipart/form-data">
             
                     <?php 
 
@@ -103,13 +104,34 @@ $user_id=$_SESSION['user']['fio'];
                             <input type="hidden" name="id_test" value="<?= $id_test ?>">
 
                                      <?php }?> 
-                                     <input type="submit" value="Сохранить" >
+                                     <!-- <input type="submit" value="Сохранить" > -->
                                      <input type="submit" value="Завершить тест" >
-
+                             
         </form>
+        <input type="submit" value="Обновить" class="but_insert_answer disp-false " id="but_update_answer" >
+        <input type="submit" value="Сохранить ответ" class="but_insert_answer" id="but_insert_answer" >
+сверка сколько поставщиков доступно лицензий до 50(3000), будет ли сверка по сотрудникам. Направление по документообороту примерно документов в квартал. от2000
                 </body>
                 </html>
+                <script type="text/javascript" >
+                var but_update_answer = document.getElementById("but_update_answer");
+                var but_insert_answer = document.getElementById("but_insert_answer");
 
+                document.querySelector("#but_insert_answer").onclick = function(){
+                    $.ajax({
+        type: "POST",
+        url: "../../inc/test/test_first_q.php",
+        data: $('#insert_answer_form').serialize(),
+       
+        success: function(response) {
+            alert("Ответ записан");    
+            but_insert_answer.classList.add("disp-false");
+            but_update_answer.classList.add("disp-true");
+         }
+        });
+
+}
+</script>
                 <script>
 
 	$(".group input").on("click", function() {

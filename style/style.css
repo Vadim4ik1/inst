@@ -283,7 +283,17 @@ height: 40px;
 .sidenav a:hover {
     color: red;
 }
+.main-test{
 
+    margin-top: 50px;
+    margin-left: 257px;
+    /* height: 836px; */
+    background-color: #E7E9E9;
+
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+    width: 1044px;
+}
 .main {
     height: 836px;
     background-color: #E7E9E9;
@@ -591,6 +601,12 @@ tr:nth-child(even) {
     display: flex;
     justify-content: space-around;
     align-items: center;
+  }
+  .disp-false{
+      display: none;
+  }
+  .disp-true{
+      display: block;
   }
 }
 

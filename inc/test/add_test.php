@@ -53,12 +53,7 @@ if($type_question=='check' && (!empty($true_answer_2))){
 // echo($number);
 // mysqli_query($connect,"INSERT INTO `test` (`id_question`, `question`, `true_answer`, `true_answer_2`, `true_answer_3`, `wrong_answer`, `wrong_answer_2`, `wrong_answer_3`, `id_lesson`, `id_kurs`, `type_question`) VALUES (NULL, '', '', NULL, NULL, '', '', '', NULL, '', '')");
 // header('Location:../../front/kurs/edit_kurs.php?id='.$id_kurs);
-$answer_1=$_POST['answer_1'];
-$answer_3=$_POST['answer_3'];
-$answer_2=$_POST['answer_2'];
-$answer_4=$_POST['answer_4'];
-$answer_5=$_POST['answer_5'];
-$answer_6=$_POST['answer_6'];
+
 
 if($type_question=='check' &&(!empty($answer_1)) &&(empty($answer_2)) &&(empty($answer_3) &&(empty($answer_4) &&(empty($answer_5)) &&(empty($answer_6) ){
  
@@ -145,6 +140,7 @@ if($type_question=='check' &&(!empty($answer_1)) && (!empty($answer_2)) && (!emp
 if($type_question=='check' &&(!empty($answer_1)) && (!empty($answer_2)) && (!empty($answer_6)) ){
 
 }
+
 if($type_question=='check' &&(!empty($answer_1)) && (!empty($answer_3)) && (!empty($answer_4)) ){
 
 }
@@ -174,6 +170,7 @@ if($type_question=='check' &&(!empty($answer_2)) && (!empty($answer_3)) && (!emp
 if($type_question=='check' &&(!empty($answer_2)) && (!empty($answer_3)) && (!empty($answer_6)) ){
 
 }
+
 if($type_question=='check' &&(!empty($answer_2)) && (!empty($answer_4)) && (!empty($answer_5)) ){
 
 }
