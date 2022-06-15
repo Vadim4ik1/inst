@@ -2,6 +2,7 @@
 session_start();
 require_once '../../connect/connect.php';
 $id=$_GET['id'];
+echo($id);
 ?>
 <!DOCTYPE html>
 <html lang="en">

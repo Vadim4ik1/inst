@@ -109,9 +109,9 @@ $id_test=$_GET['id'];
             $test_empty=$oik[0];
             $name_mpty=$oik[1];
                 }
-                echo($test_empty);
+                // echo($test_empty);
               if(!empty($test_empty)){ ?>
-      Редактировать тест   
+   
       <form action="../test/edit_test.php" enctype="multipart/form-data" method="POST">
         <input type="hidden" value="<?=$test_empty?>" name="id_test">
         <input type="submit" class="button-inlec-back" value="Редактировать">

@@ -66,7 +66,7 @@ require_once '../../connect/connect.php';
     </tr>
    
     <?php $cifra=0;
-     $people = mysqli_query($connect, "SELECT * FROM `User` ");
+     $people = mysqli_query($connect, "SELECT * FROM `user` ");
 		$people = mysqli_fetch_all($people);
 		foreach ($people as $people) {
             $cifra++;

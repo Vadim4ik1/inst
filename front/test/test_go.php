@@ -8,17 +8,24 @@ $user_id=$_SESSION['user']['fio'];
 
 ?>
 
+<html lang="en">
 
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                    <link rel="stylesheet" href="../../style/style.css">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Document</title>
-                </head>
-                <body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../style/normalize.css">
+    <link rel="stylesheet" href="../../style/style.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="main">
+    <div class="vopros">
                 <?php
 
                 $numb_q = mysqli_query($connect, "SELECT * FROM `test` WHERE `id_test`=$id_test");
@@ -31,7 +38,7 @@ $user_id=$_SESSION['user']['fio'];
                             <input type="hidden" name="number_question" value="<?= $number_question ?>">
                             <input type="hidden" name="id_test" value="<?= $id_test ?>">
                                 
-                            
+                        
                             <input type="submit" value="<?= $numb_q[11] ?>"  id="vopros_<?=$numb_q[11]?>">
 
                             <?php 
@@ -59,9 +66,9 @@ $user_id=$_SESSION['user']['fio'];
 
                 }   
                     ?>
-
+</div>
         <form action="test.php" method="post" enctype="multipart/form-data">
-                вопрос:
+            
                     <?php 
 
                                 $numb_q = mysqli_query($connect, "SELECT * FROM `test` WHERE `number_q`=$number_question AND `id_test`=$id_test");
@@ -96,7 +103,9 @@ $user_id=$_SESSION['user']['fio'];
                             <input type="hidden" name="id_test" value="<?= $id_test ?>">
 
                                      <?php }?> 
-                                     <input type="submit" value="Следующий вопрос" >
+                                     <input type="submit" value="Сохранить" >
+                                     <input type="submit" value="Завершить тест" >
+
         </form>
                 </body>
                 </html>

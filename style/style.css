@@ -28,6 +28,9 @@ body{
 .selected{
     color:red;
 }
+.vopros{
+    display: flex;
+}
 h1{
     font-style: normal;
     font-weight: 700;

@@ -6,7 +6,7 @@ $login=$_POST['login'];
 $password=md5($_POST['password']);
 // print($login);
 // print($password);
-$checkuser=mysqli_query($connect,"SELECT * FROM `User` WHERE `login` = '$login' AND `password`='$password'");
+$checkuser=mysqli_query($connect,"SELECT * FROM `user` WHERE `login` = '$login' AND `password`='$password'");
 if (mysqli_num_rows($checkuser) > 0) {
     $user = mysqli_fetch_assoc($checkuser);
 

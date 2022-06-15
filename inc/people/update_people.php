@@ -20,7 +20,7 @@ $picture=$_POST['picture'];
 $path='uploads/'.time().$_FILES['picture']['name'];
 move_uploaded_file($_FILES['picture']['tmp_name'],'../../'.$path);
 
-mysqli_query($connect,"UPDATE `User`  SET `fio`='$fio',`date_born`='$dateborn', `phone`='$phone', `email`='$email', `login`='$login', `groupp`='$groupp',`status`='$status',`picture`='$path' WHERE `id_user`='$id'");
+mysqli_query($connect,"UPDATE `user`  SET `fio`='$fio',`date_born`='$dateborn', `phone`='$phone', `email`='$email', `login`='$login', `groupp`='$groupp',`status`='$status',`picture`='$path' WHERE `id_user`='$id'");
 // $_SESSION['message'] = 'Данные успешно изменены';
 header('Location:../../front/people/allpeople.php');
 ?>

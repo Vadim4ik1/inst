@@ -7,9 +7,17 @@ if (empty($id_lesson)){
     $id_lesson=$_GET['id'];
 }
 $id_kurs=$_POST['id_kurs'];
-echo('Лекция'.$id_lesson);
-echo('id_курса'.$id_kurs);
-
+$id_user=$_SESSION['user']['fio'];
+$idl = mysqli_query($connect, "SELECT * FROM `lesson` WHERE `id_lesson`=$id_lesson ");
+$idl = mysqli_fetch_all($idl);
+foreach ($idl as $idl) {
+    $id_kurs=$idl[4];
+}
+$tn = mysqli_query($connect, "SELECT * FROM `test_name` WHERE `id_kurs`=$id_kurs AND `id_lesson`=$id_lesson ");
+$tn = mysqli_fetch_all($tn);
+foreach ($tn as $tn) { 
+    $id_test=$tn[0];
+}
 ?>
 <html lang="en">
 
@@ -89,37 +97,38 @@ echo('id_курса'.$id_kurs);
                 <div class="button-lec">
                     <a class="button-inlec" href="../kurs/kurs.php?id=<?=$id_kurs?>">НАЗАД</a>
 
-                    <?php if(!empty($lesson[5])){?>
-                    Видео лекции:<?= $lesson[5]  ?>
-                    <video width="400" height="300" controls="controls" poster="video/duel.jpg">
-                        <source src="video/duel.ogv" type='video/ogg; codecs="theora, vorbis"'>
-                        <source src="video/duel.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-                        <source src="video/duel.webm" type='video/webm; codecs="vp8, vorbis"'>
-                        Тег video не поддерживается вашим браузером.
-                        <a href="video/duel.mp4">Скачайте видео</a>.
-                        <?php }else{
-                
-             }?>
-
-                    </video>
+       
                     <?php }?>
                     <?php
-         $lesson = mysqli_query($connect, "SELECT * FROM `test_name` WHERE `id_lesson`=$id_lesson");
-		$lesson = mysqli_fetch_all($lesson);
-		foreach ($lesson as $lesson) {
+                     $th = mysqli_query($connect, "SELECT * FROM `test_history` WHERE `id_user`='$id_user' AND `id_test`='$id_test' ");
+                     $th = mysqli_fetch_all($th);
+                     if($th=="ended"){
+                        echo("Тест пройден");
+                     }else{
+                       
 
-            if(!empty($lesson[0])){
-                $id_test=$lesson[0];
-                ?>
-                    <form action="../test/test_go.php" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="id_test" value="<?=$id_test?>">
-                        <input type="submit" class="button-inlec-back" href="" value="ПРОЙТИ ТЕСТ">
-                </div>
-                </form>
-                <?php }
-            ?>
-                <?php }
-        ?>
+                        $lesson = mysqli_query($connect, "SELECT * FROM `test_name` WHERE `id_lesson`='$id_lesson'");
+                        $lesson = mysqli_fetch_all($lesson);
+                        foreach ($lesson as $lesson) {
+                
+                            if(!empty($lesson[0])){
+                                $id_test=$lesson[0];
+                                ?>
+
+                                <form action="../test/test_go.php" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="id_test" value="<?=$id_test?>">
+                                        <input type="submit" class="button-inlec-back" value="ПРОЙТИ ТЕСТ">
+                                </div>
+                                </form>
+                                <?php }
+                    } 
+                     }?>
+                     
+                     
+                    
+                     
+                 
+                          
 
 </body>
 
