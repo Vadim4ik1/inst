@@ -49,7 +49,7 @@ $id=$_GET['id'];
     
   </div>
 <?php 
-$people = mysqli_query($connect, "SELECT * FROM `User` WHERE `id_user`='$id' ");
+$people = mysqli_query($connect, "SELECT * FROM `user` WHERE `id_user`='$id' ");
 		$people = mysqli_fetch_all($people);
 		foreach ($people as $people) {
 

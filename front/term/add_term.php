@@ -15,8 +15,20 @@ require_once '../../connect/connect.php';
 
 <p>Термин<input type="text" name="name"></p>
 <p>Объяснение<input type="text" name="text"></p>
-<!-- <p>Видео лекции не работает<input type="file" name="video"></p> -->
-<!-- <input type="hidden" value="<?= $number ?>" name="number"> -->
+К какой лекции крепить
+<select name="lesson" id="">
+       <?php $les = mysqli_query($connect, " SELECT * FROM `lesson` ");
+        $les = mysqli_fetch_all($les);
+        foreach ($les as $les) {
+           
+      if($lesson_true==$les[1]){ ?>
+        <option selected value="<?= $les[1]?>"><?=$les[1]?></option>
+    <?php  }else{?>
+        <option  value="<?= $les[1]?>"><?=$les[1]?></option>
+     
+    
+ <?php  } }?>
+</select>
 
 <input type="submit" value="Добавить">
 </form>

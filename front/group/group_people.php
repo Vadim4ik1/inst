@@ -2,6 +2,7 @@
 session_start();
 require_once '../../connect/connect.php';
 $group=$_GET['id'];
+echo($group);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,19 +14,18 @@ $group=$_GET['id'];
 
 <body>
 <br>
-<?php $term = mysqli_query($connect, "SELECT * FROM `User` WHERE `groupp`='$group' ");
+<?php $term = mysqli_query($connect, "SELECT * FROM `user` WHERE `groupp`='$group' ");
 		$term = mysqli_fetch_all($term);
 		foreach ($term as $term) {
 
             ?>
                       <a><?=$term[1]?></a>
-                      <a href="change_group.php?id=<?=$term[0]?>">Перевести в другую группу</a>
+                      <!-- <a href="change_group.php?id=<?=$term[0]?>">Перевести в другую группу</a> -->
 
 <br>
 
             <?php }?>
             <br>    
-            <br>    <a href="../../admin_page.php">Админка</a>
 
 </body>
 </html>

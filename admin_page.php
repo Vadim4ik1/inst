@@ -44,9 +44,13 @@ $id_user=$_SESSION['user']['id_user'];
   <a href="front/term/term.php">БАЗА ЗНАНИЙ</a>
   <div class="hr"> <hr> </div>
   <a  href="front/group/group.php">ГРУППЫ</a>
-  <a href="front/signinup/admin_signin.php">зарегать человека</a> <br>
-<a href="front/kurs/add_kurs.php">Добавить курс</a> <br>
-<a href="front/signinup/signin.php">Удалить курс</a> <br>
+  <div class="hr"> <hr> </div>
+  <a href="front/signinup/admin_signin.php">зарегать человека</a>
+  <div class="hr"> <hr> </div>
+<a href="front/kurs/add_kurs.php">Добавить курс</a>
+<div class="hr"> <hr> </div>
+<a href="front/signinup/signin.php">Удалить курс</a>
+<div class="hr"> <hr> </div>
 <a href="inc/singup/logout.php">выйти</a>
 </div>
 

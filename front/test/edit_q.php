@@ -70,11 +70,10 @@ $oik = mysqli_query($connect, "SELECT * FROM `test` WHERE `id_question`='$id' ")
 $oik = mysqli_fetch_all($oik);
 foreach ($oik as $oik) {
 ?>
-<form action="">
+<form action="../../inc/question/update.php" method="post" enctype="multipart/form-data">
 
 
 <p>Вопрос </p><input type="text" name="question" value="<?= $oik[1] ?>" ><br>
-
 
 <p>Правильный ответ<input type="text" name="true_answer" value="<?= $oik[2]?>" ></p><br>
 <p>Правильный ответ 2<input type="text" name="true_answer_2" value="<?= $oik[3]?>" ></p><br>
@@ -82,8 +81,8 @@ foreach ($oik as $oik) {
 <p>Неправильный ответ <input type="text" name="wrong_answer" value="<?= $oik[5]?>" ></p><br>
 <p>Неправильный ответ 2 <input type="text" name="wrong_answer_2" value="<?= $oik[6]?>" ></p><br>
 <p>Неправильный ответ 3<input type="text" name="wrong_answer_3" value="<?= $oik[7]?>" ></p><br>
-
-    
+<input type="hidden" name="type" value="<?= $oik[10]?>" >
+<input type="hidden" name="id_question" value="<?=$oik[0]?>">
 <?php }?>
 
 <a href="">Удалить</a>

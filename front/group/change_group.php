@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../../connect/connect.php';
-$id_user=$_GET['id'];
+$group=$_GET['id'];
 
 ?>
 <!DOCTYPE html>
@@ -13,29 +13,29 @@ $id_user=$_GET['id'];
 </head>
 
 <body>
-<?php $term = mysqli_query($connect, "SELECT * FROM `User` WHERE `id_user`='$id_user' ");
+<form action="../../inc/group/update.php" method="post" enctype="multipart/form-data">
+<?php $term = mysqli_query($connect, "SELECT * FROM `group` WHERE `name`='$group' ");
 		$term = mysqli_fetch_all($term);
 		foreach ($term as $term) {
             ?>
-            Перевести из группы:
-                      <a><?=$term[13]?></a>
-                      в группу
-                      <form action="update_group.php" method="post" enctype="multipart/form-data">
-                          <input type="hidden" name="id_user" value="<?=$id_user?>" >
-                      <select name="group" id="">
+            <input type="hidden" name="id" value="<?=$term[0]?>">
+            Название <input type="text" name="group" value="<?=$term[1]?>">
+            Препод 
+                      <select name="prepod" id="">
                       <?php 
-                      $gr = mysqli_query($connect, "SELECT DISTINCT `groupp` FROM `User` ");
-                        $gr = mysqli_fetch_all($gr);
-                        foreach ($gr as $gr) {
+                      $pr = mysqli_query($connect, "SELECT * FROM `user` where `status`='prepod' ");
+                        $pr = mysqli_fetch_all($pr);
+                        foreach ($pr as $pr) {
                             ?>
-                        <option value="<?=$gr[0]?>"><?=$gr[0]?></option>
+                        <option value="<?=$pr[1]?>"><?=$pr[1]?></option>
                         <?php } ?>
 
                     </select>
                             <input type="submit">
+                            <a href="../../inc/group/delete.php?id=<?=$term[0]?>">Удалить к хренам группу</a>
+
             <?php }?>
             <br>    
-            <br>    <a href="../../admin_page.php">Админка</a>
 
 </body>
 </html>

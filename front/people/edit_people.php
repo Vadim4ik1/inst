@@ -51,7 +51,7 @@ $id=$_GET['id'];
     
   </div>
 <?php 
-$people = mysqli_query($connect, "SELECT * FROM `User` WHERE `id_user`='$id' ");
+$people = mysqli_query($connect, "SELECT * FROM `user` WHERE `id_user`='$id' ");
 		$people = mysqli_fetch_all($people);
 		foreach ($people as $people) {
 
@@ -85,7 +85,7 @@ $people = mysqli_query($connect, "SELECT * FROM `User` WHERE `id_user`='$id' ");
             В
             <select name="groupp" id="">
                       <?php 
-                      $gr = mysqli_query($connect, "SELECT DISTINCT `groupp` FROM `User` ");
+                      $gr = mysqli_query($connect, "SELECT DISTINCT `groupp` FROM `user` ");
                         $gr = mysqli_fetch_all($gr);
                         foreach ($gr as $gr) {
                             ?>

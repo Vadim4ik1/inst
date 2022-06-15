@@ -1,5 +1,9 @@
 
+<?php
+session_start();
 
+require_once '../../connect/connect.php';
+date_default_timezone_set('UTC');?>
 <form action="../../inc/register/register.php" method="post" enctype="multipart/form-data">
 <p>fio</p><input type="text" name="fio"><br>
 <p>date_born</p><input type="date" name="date_born"><br>
@@ -18,9 +22,10 @@
 <p>password</p><input type="password" name="password"><br>
 Группа
 <select name="groupp" id="">
-<option value="Студент">Студент</option>
-<option value="Преподаватель">Преподаватель</option>
-<option value="Админ">Админ</option>
-</select><p></p><br>
+<?php $gr = mysqli_query($connect, "SELECT * FROM `group` ");
+		$gr = mysqli_fetch_all($gr);
+		foreach ($gr as $gr) { ?>
+<option value="<?=$gr[1]?>"><?=$gr[1]?></option>
+<?php }?></select>
 <button type="submit">Поехали</button>
 </form>
