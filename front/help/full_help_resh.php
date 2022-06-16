@@ -1,11 +1,8 @@
 <?php 
 session_start();
-require_once 'connect/connect.php';
-// if(isset($user['status'])){
-//     header('Location: index.php');
-//     }
-$id_user=$_SESSION['user']['id_user'];
-
+require_once '../../connect/connect.php';
+$id=$_GET['id'];
+$user_id=$_SESSION['user']['fio'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,8 +11,8 @@ $id_user=$_SESSION['user']['id_user'];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/normalize.css">
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="../../style/normalize.css">
+    <link rel="stylesheet" href="../../style/style.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
@@ -66,27 +63,36 @@ $id_user=$_SESSION['user']['id_user'];
 
 
 <div class="main">
- <div class="container-osnova">
- <?php 
-     $users = mysqli_query($connect, "SELECT * FROM `user` WHERE `id_user`='$id_user' ");
-     $users = mysqli_fetch_all($users);
-     foreach ($users as $users) {?>
-   <div class="avatar">
-     <img style="border-radius:30px;" src="<?=$users[3]?>" width="250px" alt="">
-   </div>
-   <div class="opisanie">
-     <p><?=$users[1]?></p>
-     <hr>
-     <p>ДОЛЖНОСТЬ:<?=$users[4]?></p>
-     <hr>
-     <p>ПОЧТА: <?=$users[7]?></p>
-     <hr>
-     <p>ТЕЛ: <?=$users[6]?></p>
-     <hr>
-   </div>
-  <?php }?>
- </div>
-</div>
+<?php $ms = mysqli_query($connect, "SELECT * FROM `messages` WHERE `thema`='$id' ORDER BY `time` ");
+		$ms = mysqli_fetch_all($ms);
+		foreach ($ms as $ms) {
+         $thema=$ms[1];
+         $to=$ms[3];
+         if($user_id=="to"){
+            $to=$ms[4]; 
+         }
+         ?>
+    <p><?=$ms[3]?>:<?=$ms[2]?></p><br>
+      <?php  } ?>
+
+<form action="../../inc/help/add_msg.php" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="to" value="<?=$to?>">
+<input type="hidden" name="thema" value="<?= $thema?>">    
+<!-- <input type="submit/"> -->
      
+        </form>
+
+       
+
+  
+  
+  <!-- <a href="#" class="js-open-modal" data-modal="2">Открыть окно 2</a> -->
+ </div>
+  
+  </body>
+  
+  
+  </html>
+ 
 </body>
 </html> 
