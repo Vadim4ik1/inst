@@ -47,7 +47,8 @@ require_once '../../connect/connect.php';
 <div class="main">
 <div class="container-razdels">
 <?php $cifra=1;
- $kurs = mysqli_query($connect, "SELECT * FROM `kurs` ");
+ $gr=$_SESSION['user']['groupp'];
+ $kurs = mysqli_query($connect, "SELECT * FROM `kurs` WHERE `group`= '$gr' ");
 		$kurs = mysqli_fetch_all($kurs);
 		foreach ($kurs as $kurs) {
 

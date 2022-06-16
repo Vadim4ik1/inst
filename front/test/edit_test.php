@@ -2,7 +2,7 @@
 session_start();
 require_once '../../connect/connect.php';
 $id=$_POST['id_test'];
-
+$id_lesson=$_POST['id_lesson'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,6 +51,8 @@ $id=$_POST['id_test'];
   <div class="pust-blok">
     
   </div>  
+
+  <a href="add_test.php?id=<?=$id_lesson?>">Добавить вопрос</a>
   <table class="tablica">
 <tr>
   <td>№</td>

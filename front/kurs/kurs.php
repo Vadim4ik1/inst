@@ -3,6 +3,7 @@ session_start();
 require_once '../../connect/connect.php';
 $id=$_GET['id'];
 echo($id);
+$user_id=$_SESSION['user']['fio'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +33,7 @@ echo($id);
   <div class="hr"> <hr> </div>
   <a href="../people/allpeople.php">СПИСОК ПОЛЬЗОВАТЕЛЕЙ</a>
   <div class="hr"> <hr> </div>
-  <?php $kurs = mysqli_query($connect, "SELECT * FROM `kurs` WHERE `id_kurs`=$id  ");
+  <?php $kurs = mysqli_query($connect, "SELECT * FROM `kurs` WHERE `id_kurs`='$id'");
 		$kurs = mysqli_fetch_all($kurs);
 		foreach ($kurs as $kurs) {  
 
@@ -60,12 +61,12 @@ echo($id);
           <input class="drop<?=$kurs[0]?>" type="submit" value="Действия"> </a>
           <div style="display:none;	box-shadow: 0 4px 10px rgba(10, 20, 30, .4); position:absolute;left: 1008px;top: 200pxpx;width: 290px; background:#fff;" class="dropdown<?=$kurs[0]?>">   
           <a class="link-inpeople" href="../lesson/add_lesson.php?id=<?=$kurs[0]?>">Добавить лекцию </a>
-          <hr>
+            <hr>
             <a class="link-inpeople" href="../../inc/kurs/delete_kurs.php?id=<?=$kurs[0]?>">Удалить этот курс </a>
             <hr>
             <a class="link-inpeople" href="edit_kurs.php?id=<?=$kurs[0]?>">Изменить этот курс </a>
             <hr>
-            <a class="link-inpeople" href="../test/add_test_name.php?id=<?=$id_lesson[0]?>">Создать тест </a>
+            <a class="link-inpeople" href="../test/add_test_name.php?id=<?=$kurs[0]?>">Создать тест </a>
             <hr>
             <a class="link-inpeople" href="edit_name_kurs.php?id=<?=$kurs[0]?>">Изменить имя курса </a>
         </div> 
@@ -82,7 +83,8 @@ $(".drop<?=$kurs[0]?>")
 </script>
 
             <?php }?>
-            <?php $lesson = mysqli_query($connect, "SELECT * FROM `lesson` WHERE `id_kurs`='$id' ORDER BY `number` ");
+            <?php $number_question=0; 
+            $lesson = mysqli_query($connect, "SELECT * FROM `lesson` WHERE `id_kurs`='$id' ORDER BY `number` ");
 		    $lesson = mysqli_fetch_all($lesson);
 		    foreach ($lesson as $lesson) { 
                 $id_kurs_itog=$lesson[4]?>
@@ -95,15 +97,23 @@ $(".drop<?=$kurs[0]?>")
             <!-- <a href="../lesson/lesson.php?id=<?=$lesson[0]?>"> < </a> -->
         
             <?php }?>
-         
-        
-        
             </div>
-            <form action="../lesson/lesson.php" method="post" enctype="multipart/form-data">
-               <input type="hidden" name="id_kurs" value="<?=$id_kurs_itog?>">
-             
-               <input type="submit" value="Пройти итоговый тест">
-            </form>
+            <?php  $test = mysqli_query($connect, "SELECT * FROM `test_itog` WHERE `id_test`='$id_kurs' AND `id_user`='$user_id' ");
+		              $test = mysqli_fetch_all($test);
+		              foreach ($test as $test) {
+                    if(empty($test[0])){?>
+                      <form action="../test/test_itog.php" method="post" enctype="multipart/form-data">
+                      <?php
+                      $count=1;
+                      ?>
+                    
+                       <input type="hidden" name="id_kurs" value="<?=$id_kurs_itog?>">
+                       <input type="hidden" name="count" value="<?=$count?>">
+                       <input type="submit" value="Пройти итоговый тест">
+                    </form>
+                   <?php  }
+                  }  ?> 
+            
  </div>
             </body>
 </html>

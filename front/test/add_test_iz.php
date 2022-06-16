@@ -112,7 +112,7 @@ echo($id_kurs);
 </div>
 
 <button type="submit">Добавить вопрос</button>
-<!-- <a href="">Закрыть тест</a> -->
+<a href="">Закрыть тест</a>
 
 </form>
 

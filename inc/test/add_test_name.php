@@ -21,4 +21,4 @@ foreach ($oik as $oik) {
    echo($id_test);
  }
 
-header('Location:../../front/test/add_test.php?id='.$id_test);
+header('Location:../../front/test/add_test.php?id='.$id_lesson);

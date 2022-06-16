@@ -1,0 +1,179 @@
+<?php
+session_start();
+
+require_once '../../connect/connect.php';
+date_default_timezone_set('UTC');
+$id_test=$_POST['id_kurs'];
+$number_q=$_POST['number_question'];
+$id_question=$_POST['id_question'];
+$type_question=$_POST['type_question'];
+$user_id=$_SESSION['user']['fio'];
+$answer=$_POST['answer'];
+$answer_2=$_POST['answer_2'];
+$answer_3=$_POST['answer_3'];
+$answer_4=$_POST['answer_4'];
+$answer_5=$_POST['answer_5'];
+$answer_6=$_POST['answer_6'];
+
+
+echo($id_test."-".$number_q."-".$id_question."-".$type_question."-".$user_id."-".$answer."-".$answer_2."-".$answer_3);
+
+
+
+// echo($test_name);
+// mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`, `answer_3`, `type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$answer_2','$answer_3','$type_question')");
+if($type_question=='check' &&(!empty($answer)) &&(empty($answer_2)) &&(empty($answer_3)) &&(empty($answer_4)) &&(empty($answer_5)) &&(empty($answer_6))){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$type_question')");
+}
+if($type_question=='check' &&(empty($answer)) &&(!empty($answer_2)) &&(empty($answer_3)) &&(empty($answer_4)) &&(empty($answer_5)) &&(empty($answer_6))){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_2','$type_question')");
+}
+if($type_question=='check' &&(empty($answer)) &&(empty($answer_2)) &&(!empty($answer_3)) &&(empty($answer_4)) &&(empty($answer_5)) &&(empty($answer_6))){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_3','$type_question')");
+}
+if($type_question=='check' &&(empty($answer)) &&(empty($answer_2)) &&(empty($answer_3)) &&(!empty($answer_4)) &&(empty($answer_5)) &&(empty($answer_6))){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_4','$type_question')");
+}
+if($type_question=='check' &&(empty($answer)) &&(empty($answer_2)) &&(empty($answer_3)) &&(empty($answer_4)) &&(!empty($answer_5)) &&(empty($answer_6))){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_5','$type_question')");
+}
+if($type_question=='check' &&(empty($answer)) &&(empty($answer_2)) &&(empty($answer_3)) &&(empty($answer_4)) &&(empty($answer_5)) &&(!empty($answer_6))){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_6','$type_question')");
+}
+
+
+if($type_question=='check' &&(!empty($answer)) && (!empty($answer_2)) &&(empty($answer_3)) &&(empty($answer_4)) &&(empty($answer_5)) &&(empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`answer_2`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$answer_2','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer)) && (empty($answer_2)) &&(!empty($answer_3)) &&(empty($answer_4)) &&(empty($answer_5)) &&(empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`answer_2`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$answer_3','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer)) && (empty($answer_2)) &&(empty($answer_3)) &&(!empty($answer_4)) &&(empty($answer_5)) &&(empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`answer_2`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$answer_4','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer)) && (empty($answer_2)) &&(empty($answer_3)) &&(empty($answer_4)) &&(!empty($answer_5)) &&(empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`answer_2`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$answer_5','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer)) && (empty($answer_2)) &&(empty($answer_3)) &&(empty($answer_4)) &&(empty($answer_5)) &&(!empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`answer_2`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$answer_6','$type_question')");
+}
+
+
+if($type_question=='check' &&(!empty($answer_2)) && (!empty($answer_3)) &&(empty($answer)) &&(empty($answer_4)) &&(empty($answer_5)) &&(empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`answer_2`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_2','$answer_3','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer_2)) && (!empty($answer_4)) &&(empty($answer_3)) &&(empty($answer_1)) &&(empty($answer_5)) &&(empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`answer_2`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_2','$answer_4','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer_2)) && (!empty($answer_5)) &&(empty($answer_3)) &&(empty($answer_1)) &&(empty($answer_4)) &&(empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`answer_2`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_2','$answer_5','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer_2)) && (!empty($answer_6)) &&(empty($answer_3)) &&(empty($answer_1)) &&(empty($answer_5)) &&(empty($answer_4)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`answer_2`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_2','$answer_6','$type_question')");
+}
+
+
+if($type_question=='check' &&(!empty($answer_3)) && (!empty($answer_4)) &&(empty($answer_1)) &&(empty($answer_2)) &&(empty($answer_5)) &&(empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`answer_2`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_3','$answer_4','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer_3)) && (!empty($answer_5)) &&(empty($answer_1)) &&(empty($answer_2)) &&(empty($answer_4)) &&(empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`answer_2`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_3','$answer_5','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer_3)) && (!empty($answer_6))  &&(empty($answer_1)) &&(empty($answer_2)) &&(empty($answer_4)) &&(empty($answer_5)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`answer_2`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_3','$answer_6','$type_question')");
+}
+
+if($type_question=='check' &&(!empty($answer_4)) && (!empty($answer_5))  &&(empty($answer_1)) &&(empty($answer_2)) &&(empty($answer_3)) &&(empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`answer_2`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_4','$answer_5','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer_4)) && (!empty($answer_6))  &&(empty($answer_1)) &&(empty($answer_2)) &&(empty($answer_3)) &&(empty($answer_5)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`answer_2`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_4','$answer_6','$type_question')");
+}
+
+
+if($type_question=='check' &&(!empty($answer_5)) && (!empty($answer_6)) &&(empty($answer_1)) &&(empty($answer_2)) &&(empty($answer_3)) &&(empty($answer_4)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`answer_2`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_5','$answer_6','$type_question')");
+}
+
+if($type_question=='check' && (!empty($answer)) && (!empty($answer_2)) && (!empty($answer_3)) &&(empty($answer_4)) &&(empty($answer_5)) &&(empty($answer_6))  )
+{
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$answer_2','$answer_3','$type_question')");
+}
+
+if($type_question=='check' &&(!empty($answer)) && (!empty($answer_2)) && (!empty($answer_4)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$answer_2','$answer_4','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer)) && (!empty($answer_2)) && (!empty($answer_5)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$answer_2','$answer_5','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer)) && (!empty($answer_2)) && (!empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$answer_2','$answer_6','$type_question')");
+}
+
+
+if($type_question=='check' &&(!empty($answer)) && (!empty($answer_3)) && (!empty($answer_4)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$answer_3','$answer_4','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer)) && (!empty($answer_3)) && (!empty($answer_5)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$answer_3','$answer_5','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer)) && (!empty($answer_3)) && (!empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$answer_3','$answer_6','$type_question')");
+}
+
+
+if($type_question=='check' &&(!empty($answer)) && (!empty($answer_4)) && (!empty($answer_5)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$answer_4','$answer_5','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer)) && (!empty($answer_4)) && (!empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`,`answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$answer_4','$answer_6','$type_question')");
+}
+
+
+if($type_question=='check' &&(!empty($answer)) && (!empty($answer_5)) && (!empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$answer_5','$answer_6','$type_question')");
+}
+
+
+if($type_question=='check' &&(!empty($answer_2)) && (!empty($answer_3)) && (!empty($answer_4)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_2','$answer_3','$answer_4','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer_2)) && (!empty($answer_3)) && (!empty($answer_5)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_2','$answer_3','$answer_5','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer_2)) && (!empty($answer_3)) && (!empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_2','$answer_3','$answer_6','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer_2)) && (!empty($answer_4)) && (!empty($answer_5)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_2','$answer_4','$answer_5','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer_2)) && (!empty($answer_4)) && (!empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_2','$answer_4','$answer_6','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer_2)) && (!empty($answer_5)) && (!empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_2','$answer_5','$answer_6','$type_question')");
+}
+
+
+
+if($type_question=='check' &&(!empty($answer_3)) && (!empty($answer_4)) && (!empty($answer_5)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`,`answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_3','$answer_4','$answer_5','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer_3)) && (!empty($answer_4)) && (!empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_3','$answer_4','$answer_5','$type_question')");
+}
+if($type_question=='check' &&(!empty($answer_3)) && (!empty($answer_5)) && (!empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_3','$answer_5','$answer_5','$type_question')");
+}
+
+
+
+if($type_question=='check' &&(!empty($answer_4)) && (!empty($answer_5)) && (!empty($answer_6)) ){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`,`answer_3`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer_3','$answer_4','$answer_5','$type_question')");
+}
+
+
+
+if($type_question=='input'){
+    mysqli_query($connect,"INSERT INTO `test_itog` (`id_test_itog`, `id_user`, `id_test`, `id_question`, `answer`,`type_question`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$type_question')");
+}

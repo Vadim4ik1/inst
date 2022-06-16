@@ -87,6 +87,7 @@ require_once '../../connect/connect.php';
         $lec = mysqli_query($connect, "SELECT * FROM `lesson` WHERE `id_lesson`='$id_lesson' ");
 		$lec = mysqli_fetch_all($lec);
 		foreach ($lec as $lec) {
+
             echo($lec[1]);
         } ?> </td> <td>
         <?php 
@@ -99,16 +100,14 @@ require_once '../../connect/connect.php';
 
       <td>   <form action="../test/edit_test.php" enctype="multipart/form-data" method="POST">
               <input type="hidden" value="<?=$id_test?>" name="id_test">
-              <input type="submit">
+              <input type="hidden" value="<?=$id_lesson?>" name="id_lesson">
+              <input type="submit" value="Изменить">
           </form>
         </td>
       <!-- <td  class="drop<?= $test[0]?>">Действия
           <div style="display:none;	box-shadow: 0 4px 10px rgba(10, 20, 30, .4); position:absolute; background:#fff;" class="dropdown<?= $test[0]?>">   
        
       <a class="link-inpeople" href="edit_test.php?id=">Редактировать</a> -->
-    
-
-        
         </div>  -->
      </td>      
      </tr>
