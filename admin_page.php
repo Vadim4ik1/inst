@@ -86,6 +86,41 @@ $id_user=$_SESSION['user']['id_user'];
    </div>
   <?php }?>
  </div>
+ <div class="grafiki">
+
+
+ <div class="box">
+  <div class="box-inner">
+      <span> Успеваемость</span>
+    <span>68%</span>
+  </div>
+</div>
+<div class="box">
+  <div class="box-inner">
+      <span> Пройденных курсов</span>
+    <span>50%</span>
+  </div>
+</div>
+<div class="box">
+  <div class="box-inner">
+      <span> Решенных тестов</span>
+    <span>33%</span>
+  </div>
+</div>
+<div class="box">
+  <div class="box-inner">
+      <span> Cредняя оценка</span>
+    <span>5</span>
+  </div>
+</div>
+<div class="box">
+  <div class="box-inner">
+      <span>Готовый сотрудник</span>
+    <span>42%</span>
+  </div>
+</div>
+
+</div>
 </div>
      
 </body>
