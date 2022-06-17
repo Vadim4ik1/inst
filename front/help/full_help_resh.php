@@ -78,7 +78,7 @@ $user_id=$_SESSION['user']['fio'];
 <form action="../../inc/help/add_msg.php" method="post" enctype="multipart/form-data">
     <input type="hidden" name="to" value="<?=$to?>">
 <input type="hidden" name="thema" value="<?= $thema?>">    
-<!-- <input type="submit/"> -->
+<!-- <input type="submit/ "> -->
      
         </form>
 

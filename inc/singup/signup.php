@@ -26,6 +26,6 @@ if (mysqli_num_rows($checkuser) > 0) {
 }
 else {
     $_SESSION['message']= 'Неверный логин или пароль';
-    header('Location: ../../front/signinup/signup.php');
+    header('Location: ../../index.php');
 }
 ?>
