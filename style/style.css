@@ -607,6 +607,8 @@ tr:nth-child(even) {
   .disp-true{
       display: block;
   }
-
+.disabled{
+    background-color: red;
+}
 
 

@@ -32,7 +32,7 @@ require_once 'connect/connect.php';
     </div>
     <div class="buttons-head">
         <a class="js-open-modal" data-modal="1" class="white-button" href="">Войти</a>
-        <a  class="white-button"  href="reg.html">Зарегистироваться</a>
+        <a  class="white-button"  href="reg.php">Зарегистироваться</a>
     </div>
 
 

@@ -1,30 +1,8 @@
 <?php
 session_start();
 
-require_once '../../connect/connect.php';
+require_once 'connect/connect.php';
 date_default_timezone_set('UTC');
-$id_test=$_POST['id_test'];
-$user_id=$_SESSION['user']['fio'];
-$type_test="ended";
-// echo($id_test.$user_id);
-// $count_ques=0;
-// $ques = mysqli_query($connect, "SELECT * FROM `test` WHERE `id_test`='$id_test'");
-// $ques = mysqli_fetch_all($ques);
-// foreach ($ques as $ques) {
-//    $count_ques++; 
-// }  
-// mysqli_query($connect,"INSERT INTO `test_history` (`type_test`) VALUES ('$type_test')");
-// $people = mysqli_query($connect, "SELECT * FROM `test_history` WHERE `id_test`='$id_test' AND `id_user`='$user_id' ");
-// 		$people = mysqli_fetch_all($people);
-// 		foreach ($people as $people) {
-//             $ques = mysqli_query($connect, "SELECT * FROM `test` WHERE `id_test`='$id_test'");
-//             $ques = mysqli_fetch_all($ques);
-//             foreach ($ques as $ques) {
-//                     if($people[3]==$test[0]){
-
-//                     }
-//             }   
-//         }
 // $id_test=$_POST['id_test'];
 $id_test=1;
 $user_id=$_SESSION['user']['fio'];
@@ -127,8 +105,3 @@ $people = mysqli_query($connect, "SELECT * FROM `test_history` WHERE `id_test`='
         //     }
 
         // }
-mysqli_query($connect,"UPDATE `test_history` SET `type_test`='$type_test' WHERE `id_test`='$id_test' AND `id_user`='$user_id'");
-
-// mysqli_query($connect,"INSERT INTO `ball` SET values(`type_test`='$type_test' WHERE `id_test`='$id_test' AND `id_user`='$user_id'");
-
-header('Location:../../front/kurs/kurses.php');

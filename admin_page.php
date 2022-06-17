@@ -5,7 +5,9 @@ require_once 'connect/connect.php';
 //     header('Location: index.php');
 //     }
 $id_user=$_SESSION['user']['id_user'];
-
+$user_id=$_SESSION['user']['fio'];
+$user_gr=$_SESSION['user']['groupp'];
+$gotov=0;  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,32 +93,102 @@ $id_user=$_SESSION['user']['id_user'];
 
  <div class="box">
   <div class="box-inner">
+    <?php 
+    $kolvo3=0;
+    $kolvo4=0;
+    $kolvoingr=0;
+    $uspevaem=0;
+    $peop = mysqli_query($connect, "SELECT * FROM `user` WHERE `groupp`='$user_gr'");
+    $peop = mysqli_fetch_all($peop);
+    foreach ($peop as $peop) {
+      $kolvoingr++;
+     }
+      $usp = mysqli_query($connect, "SELECT * FROM `ball` WHERE `id_user`='$user_id' ");
+      $usp = mysqli_fetch_all($usp);
+     foreach ($usp as $usp) {
+      if($usp[3]=="3"){
+        $kolvo3++;
+      }
+      if($usp[3]=="4"){
+        $kolvo4++;
+      }
+      if($usp[3]=="5"){
+        $kolvo5++;
+      }
+     } 
+     $uspevaem=($kolvo3+$kolvo4+$kolvo5)/$kolvoingr;
+     $gotov=ceil($uspevaem*100);
+     ?>
       <span> Успеваемость</span>
-    <span>68%</span>
+    <span><?= ceil($uspevaem*100) ?>% </span>
   </div>
 </div>
 <div class="box">
   <div class="box-inner">
+  <?php
+  $kolvokurs=0;
+  $kolvoitogtest=0;
+   $prdk = mysqli_query($connect, "SELECT * FROM `kurs` WHERE `group`='$user_gr'");
+    $prdk = mysqli_fetch_all($prdk);
+    foreach ($prdk as $prdk) {
+      $kolvokurs++;
+
+     $prittest = mysqli_query($connect, "SELECT DISTINCT `id_test` FROM `test_itog` WHERE `id_user`='$user_id'");
+     $prittest = mysqli_fetch_all($prittest);
+     foreach ($prittest as $prittest) {
+        if($prdk[0]==$prittest[2]){
+          $kolvoitogtest++;
+      }
+      }     
+    }
+    $prittest = mysqli_query($connect, "SELECT DISTINCT `id_test` FROM `test_itog` WHERE `id_user`='$user_id'");
+     $prittest = mysqli_fetch_all($prittest);
+     foreach ($prittest as $prittest) {
+          $kolvoitogtest_true++;
+      } 
+      $proc_itog_test= ($kolvoitogtest_true*100)/$kolvokurs;
+      $gotov=$gotov+ceil($proc_itog_test);
+     ?>
       <span> Пройденных курсов</span>
-    <span>50%</span>
+      <span><?=  $kolvoitogtest_true ?> Проценты <?= ceil($proc_itog_test) ?>% </span>
   </div>
 </div>
 <div class="box">
   <div class="box-inner">
+  <?php  $reshen_test=0;
+   $prittest = mysqli_query($connect, "SELECT DISTINCT `id_test` FROM `test_history` WHERE `id_user`='$user_id'");
+     $prittest = mysqli_fetch_all($prittest);
+     foreach ($prittest as $prittest) {
+          $reshen_test++;
+      } ?>
       <span> Решенных тестов</span>
-    <span>33%</span>
+    <span><?= $reshen_test ?></span>
   </div>
 </div>
 <div class="box">
   <div class="box-inner">
+    <?php
+  
+     $sred_ball=0;   
+     $ocenki=0;
+     $srednily_ball=0;
+      $srb = mysqli_query($connect, "SELECT * FROM `ball` WHERE `id_user`='$user_id' ");
+      $srb = mysqli_fetch_all($srb);
+
+     foreach ($srb as $srb) {
+      $sred_ball++;
+      $ocenki = $ocenki+$srb[3];
+     } 
+     $srednily_ball=$ocenki/$sred_ball;
+  ?>
       <span> Cредняя оценка</span>
-    <span>5</span>
+    <span><?=  $srednily_ball ?></span>
   </div>
 </div>
 <div class="box">
   <div class="box-inner">
       <span>Готовый сотрудник</span>
-    <span>42%</span>
+    <span><?= ($gotov/2)+ $srednily_ball ?>%</span>
   </div>
 </div>
 

@@ -3,6 +3,7 @@ session_start();
 require_once '../../connect/connect.php';
 $id=$_POST['id_test'];
 $id_lesson=$_POST['id_lesson'];
+$cifra=1;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,6 +65,7 @@ $id_lesson=$_POST['id_lesson'];
   <td>Неправильный ответ 1</td> 
   <td>Неправильный ответ 2</td> 
   <td>Неправильный ответ 3</td> 
+  <td>Номер вопроса</td> 
 </tr>   
   <?php 
             $oik = mysqli_query($connect, "SELECT * FROM `test` WHERE `id_test`='$id' ");
@@ -71,7 +73,7 @@ $id_lesson=$_POST['id_lesson'];
             foreach ($oik as $oik) {?>
 
 <tr>
-    <td></td>
+    <td><?= $cifra ?></td>
     <td><?=$oik[1]?></td>
     <td><?=$oik[10]?></td>
     <td><?=$oik[2]?></td>
@@ -110,6 +112,9 @@ $id_lesson=$_POST['id_lesson'];
             echo("-");
         }?>
     </td>
+    <td>
+        <?=$oik[11]?>
+    </td> <?php $cifra++; ?>
     <td><a href="edit_q.php?id=<?=$oik[0]?>">Изменить вопрос</a> </td>
 
 </tr>         
