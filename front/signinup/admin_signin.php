@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-
+unset($null);
 require_once '../../connect/connect.php';
 date_default_timezone_set('UTC');?>
 <form action="../../inc/register/register.php" method="post" enctype="multipart/form-data">
@@ -9,9 +9,9 @@ date_default_timezone_set('UTC');?>
 <p>date_born</p><input type="date" name="date_born"><br>
 <p>status</p>
 <select name="status">
-<option value="Студент">student</option>
-<option value="Преподаватель">prepod</option>
-<option value="Админ">admin</option>
+<option value="student">student</option>
+<option value="prepod">prepod</option>
+<option value="admin">admin</option>
 </select>
 
 <br>
@@ -22,6 +22,7 @@ date_default_timezone_set('UTC');?>
 <p>password</p><input type="password" name="password"><br>
 Группа
 <select name="groupp" id="">
+	<option value="<?= $null?>">Нет группы</option>
 <?php $gr = mysqli_query($connect, "SELECT * FROM `group` ");
 		$gr = mysqli_fetch_all($gr);
 		foreach ($gr as $gr) { ?>

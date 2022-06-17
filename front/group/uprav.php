@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../../connect/connect.php';
+$id_gr=$_GET['id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +57,7 @@ require_once '../../connect/connect.php';
      
     <tr>
       <td>№</td>
-      <td>ФИО</td>
+      <td>ф ФИО</td>
       <td>ВОЗРАСТ</td>
       <td>ГОРОД</td>
       <td>ДОЛЖНОСТЬ</td>
@@ -65,8 +66,9 @@ require_once '../../connect/connect.php';
       <td>ГРУППА</td>
     </tr>
    
-    <?php $cifra=0;
-     $people = mysqli_query($connect, "SELECT * FROM `user` ");
+    <?php
+     $cifra=0;
+     $people = mysqli_query($connect, "SELECT * FROM `user` WHERE `groupp`='$id_gr' ");
 		$people = mysqli_fetch_all($people);
 		foreach ($people as $people) {
             $cifra++;
@@ -78,21 +80,17 @@ require_once '../../connect/connect.php';
                 if (date('md', $birthday_timestamp) > date('md')) {
                   $age--;
                 }
-
-              
                         ?>
-
-
             <tr>
             <td> <?=$cifra ?></td>
-      <td> <?=$people[1] ?></td>
+      <td><a href="../people/full_profile.php?id=<?= $people[0] ?>"> <?=$people[1] ?>></a></td>
       <td><?= $age ?></td>
       <td><?=$people[5] ?></td>
       <td><?=$people[4] ?></td>
       <td><?=$people[7] ?></td>
       <td><?=$people[6] ?></td>
       <td><?=$people[13] ?></td>
-      <td  class="drop<?= $people[0]?>">Действия
+      <!-- <td  class="drop<?= $people[0]?>">Действия
           <div style="display:none;	box-shadow: 0 4px 10px rgba(10, 20, 30, .4); position:absolute; background:#fff;" class="dropdown<?= $people[0]?>">   
           <a class="link-inpeople" href="edit_people.php?id=<?=$people[0]?>">Редактировать</a>
           <hr>
@@ -103,9 +101,9 @@ require_once '../../connect/connect.php';
             <a class="link-inpeople" href="../../inc/people/delete_profile.php?id=<?=$people[0]?>">Удалить профиль</a>
         
         </div> 
-     </td>      
+     </td>       -->
      </tr>
-     <script>
+     <!-- <script>
     $(".drop<?= $people[0]?>")
   .mouseover(function() {
   $(".dropdown<?= $people[0]?>").show(300);
@@ -115,7 +113,7 @@ $(".drop<?= $people[0]?>")
   $(".dropdown<?= $people[0]?>").hide(300);     
 });
 
-</script>
+</script> -->
     <?php }?>  
     
   </table>

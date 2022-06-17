@@ -84,12 +84,13 @@ $people = mysqli_query($connect, "SELECT * FROM `user` WHERE `id_user`='$id' ");
             <p> Перевести из  <input type="text" readonly  value="<?=$people[13]  ?>">
             В
             <select name="groupp" id="">
+            <option value="<?= $null?>">Нет группы</option>unset($null);
                       <?php 
-                      $gr = mysqli_query($connect, "SELECT DISTINCT `groupp` FROM `user` ");
+                      $gr = mysqli_query($connect, "SELECT * FROM `group` ");
                         $gr = mysqli_fetch_all($gr);
                         foreach ($gr as $gr) {
                             ?>
-                        <option value="<?=$gr[0]?>"><?=$gr[0]?></option>
+                        <option value="<?=$gr[1]?>"><?=$gr[1]?></option>
                         <?php } ?>
 
                     </select></p>
@@ -98,6 +99,7 @@ $people = mysqli_query($connect, "SELECT * FROM `user` WHERE `id_user`='$id' ");
 <div class="butons-update">
 <input type="submit" class="button-inlec-back" value="СОХРАНИТЬ">
 <a class="button-inlec-back" href="allpeople.php" value="Назад">НАЗАД</a>
+
 </div>
 
 </form>

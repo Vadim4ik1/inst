@@ -7,6 +7,11 @@ require_once 'connect/connect.php';
 $id_user=$_SESSION['user']['id_user'];
 $user_id=$_SESSION['user']['fio'];
 $user_gr=$_SESSION['user']['groupp'];
+
+$users = mysqli_query($connect, "SELECT * FROM `user` WHERE `id_user`='$id_user' ");
+$users = mysqli_fetch_all($users);
+foreach ($users as $users) {
+$user_pic=$users[3];}
 $gotov=0;  
 ?>
 <!DOCTYPE html>
@@ -25,9 +30,14 @@ $gotov=0;
 </head>
 
 <body>
+ 
     <div class="container-up">
-    <?php echo($_SESSION['user']['fio']);?>
+      <div class="podcont-up" style="display: flex;align-items:center;margin-left:10px; padding-right:5px;">
+      <img style="border-radius:30px;" src="<?=$user_pic?>" width="50px" alt="">
+      <?php echo($_SESSION['user']['fio']);?>
+      </div>
         <img src="style/img/image5.png" alt="">
+        
     </div>
     <div class="sidenav">
   <div class="hr"> <hr> </div>
@@ -56,6 +66,8 @@ $gotov=0;
 <a href="front/signinup/signin.php">Удалить курс</a>
 <div class="hr"> <hr> </div>
 <a href="front/help/help.php">Вопросы</a>
+<div class="hr"> <hr> </div>
+<a href="front/group/select_group.php">Управление группой</a>
 <div class="hr"> <hr> </div>
 <a href="inc/singup/logout.php">выйти</a>
 </div>

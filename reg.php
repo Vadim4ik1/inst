@@ -14,7 +14,7 @@
 </head>
 
 <body> 
-    <img class="img-logo" src="style/img/image 5.png" alt="">
+    <img class="img-logo" src="style/img/image5.png" alt="">
     <hr>
     <div class="nadpis-h1">
         <h1>Регистрация</h1>

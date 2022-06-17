@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Andika&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+
 .disp-none{
     display: none;
 }
@@ -10,7 +17,6 @@ background-color: green;
 .bg-red{
     background-color: red;  
 }
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 .reg-form {
         display: grid;
         margin-top: 0em;
@@ -20,9 +26,9 @@ background-color: green;
     }
 body{
     background-color: black;
-    font-family: 'Mulish', sans-serif;
-    max-width: 1440px;
-    height: 1024px;
+    font-family: 'Montserrat', sans-serif;
+
+
 }
 .selected{
     color:red;
@@ -32,26 +38,23 @@ body{
 }
 h1{
     font-style: normal;
-    font-weight: 700;
+    /* font-weight: 700; */
     font-size: 60px;
-    line-height: 87px;
     text-align: center;
-    
     color: #FFFFFF;
 }
 .img-logo{
     margin: 10px;
 }
 .nadpis-h1{
-    margin-top: 70px;
+    /* margin-top: 70px; */
     max-width: 820px;
     margin-left: auto;
     margin-right: auto;
 }
 .nadpis-h2{
-        font-weight: 700;
+        /* font-weight: 700; */
     font-size: 22px;
-    line-height: 33px;
     text-align: center;
     color: #FFFFFF;
     line-height: 2;
@@ -81,6 +84,22 @@ h1{
         display: flex;
         align-items: center;
         justify-content: center;
+        border-radius: 5px;
+}
+
+.buttons-head a:hover{
+background-color: #2b2b2b;
+border:0.3px solid white;
+color:white;
+transition: all 0.4s ease;
+
+}
+.input-but-modal{
+    color:black;
+    width: 190px;
+    border: 0.3px solid black;
+    height: 73px;
+    /* background-color: black; */
 }
 .white-button{
     
@@ -608,7 +627,7 @@ tr:nth-child(even) {
       display: block;
   }
 .disabled{
-    background-color: red;
+    background-color: rgb(77, 77, 77);
 }
 
 

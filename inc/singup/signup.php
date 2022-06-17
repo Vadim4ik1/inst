@@ -6,6 +6,7 @@ $login=$_POST['login'];
 $password=md5($_POST['password']);
 // print($login);
 // print($password);
+
 $checkuser=mysqli_query($connect,"SELECT * FROM `user` WHERE `login` = '$login' AND `password`='$password'");
 if (mysqli_num_rows($checkuser) > 0) {
     $user = mysqli_fetch_assoc($checkuser);
@@ -21,8 +22,11 @@ if (mysqli_num_rows($checkuser) > 0) {
     header('Location: ../../admin_page.php');
     }
     if($user['status']=='Студент'){
-        header('Location: ../../index_page.php');
-        }
+        header('Location: ../../index.php');
+    }
+    if($user['status']=='Преподаватель'){
+        header('Location: ../../admin_page.php');
+    }
 }
 else {
     $_SESSION['message']= 'Неверный логин или пароль';

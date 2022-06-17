@@ -8,7 +8,7 @@ $users = mysqli_query($connect, "SELECT * FROM `user` WHERE `id_user`='$id_user'
       $user_id=$users[1];
       $user_gr=$users[13];
      }
-
+echo($user_id);
 $gotov=0;  
 ?>
 <!DOCTYPE html>
@@ -120,22 +120,38 @@ $gotov=0;
   <?php
   $kolvokurs=0;
   $kolvoitogtest=0;
+   $prdk = mysqli_query($connect, "SELECT * FROM `kurs` WHERE `group`='$user_gr'");
+    $prdk = mysqli_fetch_all($prdk);
+    foreach ($prdk as $prdk) {
+      $kolvokurs++;
+
+     $prittest = mysqli_query($connect, "SELECT DISTINCT `id_test` FROM `test_itog` WHERE `id_user`='$user_id'");
+     $prittest = mysqli_fetch_all($prittest);
+     foreach ($prittest as $prittest) {
+        if($prdk[0]==$prittest[2]){
+          $kolvoitogtest++;
+      }
+      }     
+    }
+  $kolvoitogtest=0;
   $proc_itog_test=0;
   $kolvoitogtest_true=0;
     $prittest = mysqli_query($connect, "SELECT DISTINCT `id_test` FROM `test_itog` WHERE `id_user`='$user_id'");
      $prittest = mysqli_fetch_all($prittest);
-     foreach ($prittest as $prittest) {
-          $kolvoitogtest_true++;
-      } 
-      $proc_itog_test=($kolvoitogtest_true*100)/$kolvokurs;
-      
-      if($proc_itog_test==0){
-        $proc_itog_test=0;
-      }
-      $gotov=$gotov+ceil($proc_itog_test);
-     ?>
+     if(empty($prittest)){?>
       <span> Пройденных курсов</span>
+      <span> 0% </span>
+    <?php }else{   
+     foreach ($prittest as $prittest) {
+      $kolvoitogtest_true++;
+      } 
+      echo($kolvokurs);
+      $proc_itog_test=($kolvoitogtest_true*100)/$kolvokurs;
+      $gotov=$gotov+ceil($proc_itog_test); ?>
+
+      <span> 222Пройденных курсов</span>
       <span><?=  $kolvoitogtest_true ?> Проценты <?= ceil($proc_itog_test) ?>% </span>
+    <?php }?> 
   </div>
 </div>
 <div class="box">
@@ -159,12 +175,15 @@ $gotov=0;
      $srednily_ball=0;
       $srb = mysqli_query($connect, "SELECT * FROM `ball` WHERE `id_user`='$user_id' ");
       $srb = mysqli_fetch_all($srb);
-
+      if(!empty($srb)){
      foreach ($srb as $srb) {
       $sred_ball++;
       $ocenki = $ocenki+$srb[3];
      } 
-     $srednily_ball=$ocenki/$sred_ball;
+     $srednily_ball=$ocenki/$sred_ball;}
+     else{
+      $srednily_ball=0; 
+     }
   ?>
       <span> Cредняя оценка</span>
     <span><?=  $srednily_ball ?></span>
