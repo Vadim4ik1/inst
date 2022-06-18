@@ -132,3 +132,5 @@ mysqli_query($connect,"UPDATE `test_history` SET `type_test`='$type_test' WHERE 
 // mysqli_query($connect,"INSERT INTO `ball` SET values(`type_test`='$type_test' WHERE `id_test`='$id_test' AND `id_user`='$user_id'");
 
 header('Location:../../front/kurs/kurses.php');
+
+

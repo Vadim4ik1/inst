@@ -11,8 +11,10 @@ $user_gr=$_SESSION['user']['groupp'];
 $users = mysqli_query($connect, "SELECT * FROM `user` WHERE `id_user`='$id_user' ");
 $users = mysqli_fetch_all($users);
 foreach ($users as $users) {
-$user_pic=$users[3];}
+  $status = $users[4];
+  $user_pic=$users[3];}
 $gotov=0;  
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,27 +31,33 @@ $gotov=0;
     <title>Document</title>
 </head>
 
-<body>
+<body class="body-white">
  
     <div class="container-up">
-      <div class="podcont-up" style="display: flex;align-items:center;margin-left:10px; padding-right:5px;">
+      <div class="podcont-up" style="display: flex;align-items:center;margin-left:10px; padding-right:5px;"> 
+       
       <img style="border-radius:30px;" src="<?=$user_pic?>" width="50px" alt="">
+      <div style="width: 10px;"></div>
       <?php echo($_SESSION['user']['fio']);?>
       </div>
         <img src="style/img/image5.png" alt="">
         
-    </div>
-    <div class="sidenav">
+</div>
+  <div class="sidenav">
   <div class="hr"> <hr> </div>
-  <a href="#about"><?= $_SESSION['user']['groupp']?></a>
-  <div class="hr"> <hr> </div>
+
+
   <a style="color:red;" href="#services">ЛИЧНЫЙ КАБИНЕТ</a>
   <div class="hr"> <hr> </div>
+  <?php if($status=="admin"){ ?>
   <a href="front/people/allpeople.php">СПИСОК ПОЛЬЗОВАТЕЛЕЙ</a>
-  <div class="hr"> <hr> </div>
+  <div class="hr"> <hr> </div> 
+  <?php } ?>
   <a href="front/kurs/kurses.php">РАЗДЕЛЫ</a>
   <div class="hr"> <hr> </div>
-  <a href="#contact">ТЕСТЫ</a>
+  <?php if($status=="admin"){ ?>
+  <a href="front/test/tests.php">ТЕСТЫ</a>
+  <?php } ?>
   <div class="hr"> <hr> </div>
   <a href="front/otchet/otchet_fordir.php">ОТЧЕТЫ</a>
   <div class="hr"> <hr> </div>
@@ -57,19 +65,15 @@ $gotov=0;
   <div class="hr"> <hr> </div>
   <a  href="front/group/group.php">ГРУППЫ</a>
   <div class="hr"> <hr> </div>
-  <a href="front/help/help.php">Вопросы</a>
-<div class="hr"> <hr> </div>
-  <a href="front/signinup/admin_signin.php">зарегать человека</a>
+  <a href="front/signinup/admin_signin.php">ЗАРЕГИСТРИРОВАТЬ ЧЕЛОВЕКА</a>
   <div class="hr"> <hr> </div>
-<a href="front/kurs/add_kurs.php">Добавить курс</a>
+<a href="front/kurs/add_kurs.php">ДОБАВИТЬ РАЗДЕЛ</a>
 <div class="hr"> <hr> </div>
-<a href="front/signinup/signin.php">Удалить курс</a>
+<a href="front/help/help.php">ВОПРОСЫ</a>
 <div class="hr"> <hr> </div>
-<a href="front/help/help.php">Вопросы</a>
+<a href="front/group/select_group.php">УПРАВЛЕНИЕ ГРУППОЙ</a>
 <div class="hr"> <hr> </div>
-<a href="front/group/select_group.php">Управление группой</a>
-<div class="hr"> <hr> </div>
-<a href="inc/singup/logout.php">выйти</a>
+<a href="inc/singup/logout.php">ВЫЙТИ</a>
 </div>
 
 
@@ -91,15 +95,23 @@ $gotov=0;
    <div class="opisanie">
      <p><?=$users[1]?></p>
      <hr>
-     <p>ДОЛЖНОСТЬ:<?=$users[4]?></p>
+     <p>ДОЛЖНОСТЬ:<?php if($users[4]=="admin"){?>
+      Администратор
+     <?php } if($users[4]=="student"){?>
+      Студент
+     <?php } if($users[4]=="student"){?>
+    Студент
+    <?php }?> </p>
      <hr>
      <p>ПОЧТА: <?=$users[7]?></p>
      <hr>
      <p>ТЕЛ: <?=$users[6]?></p>
+     <?php $status= $users[4]; ?>
      <hr>
    </div>
   <?php }?>
  </div>
+ <?php if($status=="student"){ ?>
  <div class="grafiki">
 
 
@@ -203,7 +215,7 @@ $gotov=0;
     <span><?= ($gotov/2)+ $srednily_ball ?>%</span>
   </div>
 </div>
-
+<?php }?>
 </div>
 </div>
      
