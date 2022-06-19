@@ -5,6 +5,15 @@ require_once '../../connect/connect.php';
 //     header('Location: index.php');
 //     }
 $id_user=$_SESSION['user']['fio'];
+$id_user=$_SESSION['user']['id_user'];
+$user_id=$_SESSION['user']['fio'];
+$user_gr=$_SESSION['user']['groupp'];
+$users = mysqli_query($connect, "SELECT * FROM `user` WHERE `id_user`='$id_user' ");
+$users = mysqli_fetch_all($users);
+foreach ($users as $users) {
+  $status = $users[4];
+  $user_pic=$users[3];
+}
 
 ?>
 <!DOCTYPE html>
@@ -18,60 +27,78 @@ $id_user=$_SESSION['user']['fio'];
     <link rel="stylesheet" href="../../style/style.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
+
     <title>Document</title>
 </head>
 
-<body>
-    <div class="container-up">
-    <?php echo($_SESSION['user']['fio']);?>
-        <img src="style/img/image5.png" alt="">
-    </div>
+<body class="body-white">
+
+    <header class="header">
+        <div class="container-up">
+            <div>
+                <!-- <div class="podcont-up" style="display: flex;align-items:center;margin-left:10px; padding-right:5px;">  -->
+
+                <img style="border-radius:30px;" src="../../<?=$user_pic?>" width="50px" alt=""></div>
+            <div style="width: 10px;"></div>
+            <?php echo($_SESSION['user']['fio']);?>
+        </div>
+        <div>
+            <img src="../../style/img/image5.png" alt="">
+        </div>
+        </div>
+    </header>
     <div class="sidenav">
+        <div class="hr">
+            <hr>
+        </div>
+
+
+        <a  href="../../admin_page.php">ЛИЧНЫЙ КАБИНЕТ</a>
   <div class="hr"> <hr> </div>
-  <a href="#about"><?= $_SESSION['user']['groupp']?></a>
+  <?php if($status=="admin"){ ?>
+  <a href="../people/allpeople.php">СПИСОК ПОЛЬЗОВАТЕЛЕЙ</a>
+  <div class="hr"> <hr> </div> 
+  <?php } ?>
+  <a href="../kurs/kurses.php">РАЗДЕЛЫ</a>
   <div class="hr"> <hr> </div>
-  <a style="color:red;" href="#services">ЛИЧНЫЙ КАБИНЕТ</a>
+  <?php if($status=="admin"){ ?>
+  <a href="../test/tests.php">ТЕСТЫ</a>
+  <?php } ?>
   <div class="hr"> <hr> </div>
-  <a href="front/people/allpeople.php">СПИСОК ПОЛЬЗОВАТЕЛЕЙ</a>
+  <a href="../otchet/otchet_fordir.php">ОТЧЕТЫ</a>
   <div class="hr"> <hr> </div>
-  <a href="front/kurs/kurses.php">РАЗДЕЛЫ</a>
+  <a href="../term/term.php">БАЗА ЗНАНИЙ</a>
   <div class="hr"> <hr> </div>
-  <a href="#contact">ТЕСТЫ</a>
+  <a  href="../group/group.php">ГРУППЫ</a>
   <div class="hr"> <hr> </div>
-  <a href="#contact">ОТЧЕТЫ</a>
+  <a href="../signinup/admin_signin.php">ЗАРЕГИСТРИРОВАТЬ ЧЕЛОВЕКА</a>
   <div class="hr"> <hr> </div>
-  <a href="front/term/term.php">БАЗА ЗНАНИЙ</a>
-  <div class="hr"> <hr> </div>
-  <a  href="front/group/group.php">ГРУППЫ</a>
-  <div class="hr"> <hr> </div>
-  <a href="front/help/help.php">Вопросы</a>
+<a    href="../kurs/add_kurs.php">ДОБАВИТЬ РАЗДЕЛ</a>
 <div class="hr"> <hr> </div>
-  <a href="front/signinup/admin_signin.php">зарегать человека</a>
-  <div class="hr"> <hr> </div>
-<a href="front/kurs/add_kurs.php">Добавить курс</a>
+<a  style="color:red;" href="help.php">ВОПРОСЫ</a>
 <div class="hr"> <hr> </div>
-<a href="front/signinup/signin.php">Удалить курс</a>
+<a href="../group/select_group.php">УПРАВЛЕНИЕ ГРУППОЙ</a>
 <div class="hr"> <hr> </div>
-<a href="front/help/help.php">Вопросы</a>
-<div class="hr"> <hr> </div>
-<a href="inc/singup/logout.php">выйти</a>
-</div>
+<a href="../../inc/singup/logout.php">ВЫЙТИ</a>
+    </div>
 
 
+    <div class="main">
 
-
-
-<!-- <a href="front/signinup/signup.php">войти</a> -->
-
-
-<div class="main">
+        <h1 class="name-of">Мои вопросы
+        </h1>
+        <div class="block-insecadd">
+        <div class="secion-add">
  МОИ РЕШЕННЫЕ ВОПРОСЫ:
 <?php $ms = mysqli_query($connect, "SELECT DISTINCT `thema` FROM `messages` WHERE `status`='resh' AND `author`='$id_user' ");
 		$ms = mysqli_fetch_all($ms);
 		foreach ($ms as $ms) { ?>
             <a href="full_help_resh.php?id=<?=$ms[0]?>"><?= $ms[0] ?></a>
       <?php  }?>
+      </div>
+      <br>
+      <div class="secion-add">
+        
        МОИ Нерешенные ВОПРОСЫ:
 <?php $ms = mysqli_query($connect, "SELECT DISTINCT `thema` FROM `messages` WHERE `status`='neresh' AND `author`='$id_user' ");
 		$ms = mysqli_fetch_all($ms);
@@ -80,10 +107,12 @@ $id_user=$_SESSION['user']['fio'];
         
             <a href="full_help.php?id=<?=$ms[0]?>"><?= $ms[0] ?></a>
       <?php  }?> 
-
-      <a class="js-open-modal" data-modal="1" class="white-button" href="">Задать вопрос</a>
-      
-
+      </div>
+      <br> <div class="mybut">
+      <a class="js-open-modal"  data-modal="1"class="button-inlec-back" href="">Задать вопрос</a>
+     
+     </div>
+      </div>
       </div>
   
   
@@ -93,7 +122,7 @@ $id_user=$_SESSION['user']['fio'];
   
   
   <div class="modal" data-modal="1">
-      <img src="style/img/image 5_modal.png" class="img-modal"  alt="">
+      <img src="../../style/img/image 5_modal.png" class="img-modal"  alt="">
      <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg"               viewBox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
      <p class="modal__title">   </p>
      <form action="../../inc/help/add_thema.php" method="post" enctype="multipart/form-data">

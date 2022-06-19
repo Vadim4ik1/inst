@@ -24,25 +24,33 @@ $id_gr=$_GET['id'];
     </div>
     <div class="sidenav">
   <div class="hr"> <hr> </div>
-  <a href="#about"><?= $_SESSION['user']['groupp']?></a>
+  <a  href="../../admin_page.php">ЛИЧНЫЙ КАБИНЕТ</a>
   <div class="hr"> <hr> </div>
-  <a href="../../admin_page.php">ЛИЧНЫЙ КАБИНЕТ</a>
-  <div class="hr"> <hr> </div>
-  <a  style="color:red;" href="#">СПИСОК ПОЛЬЗОВАТЕЛЕЙ</a>
-  <div class="hr"> <hr> </div>
+  <?php if($status=="admin"){ ?>
+  <a href="../people/allpeople.php">СПИСОК ПОЛЬЗОВАТЕЛЕЙ</a>
+  <div class="hr"> <hr> </div> 
+  <?php } ?>
   <a href="../kurs/kurses.php">РАЗДЕЛЫ</a>
   <div class="hr"> <hr> </div>
-  <a href="#contact">ТЕСТЫ</a>
+  <?php if($status=="admin"){ ?>
+  <a href="../test/tests.php">ТЕСТЫ</a>
+  <?php } ?>
   <div class="hr"> <hr> </div>
-  <a href="#contact">ОТЧЕТЫ</a>
+  <a href="../otchet/otchet_fordir.php">ОТЧЕТЫ</a>
   <div class="hr"> <hr> </div>
   <a href="../term/term.php">БАЗА ЗНАНИЙ</a>
   <div class="hr"> <hr> </div>
   <a  href="../group/group.php">ГРУППЫ</a>
-  <a href="../signinup/admin_signin.php">зарегать человека</a> <br>
-<a href="../kurs/add_kurs.php">Добавить курс</a> <br>
-<a href="../signinup/signin.php">Удалить курс</a> <br>
-<a href="../inc/singup/logout.php">выйти</a>
+  <div class="hr"> <hr> </div>
+  <a href="../signinup/admin_signin.php">ЗАРЕГИСТРИРОВАТЬ ЧЕЛОВЕКА</a>
+  <div class="hr"> <hr> </div>
+<a    href="../kurs/add_kurs.php">ДОБАВИТЬ РАЗДЕЛ</a>
+<div class="hr"> <hr> </div>
+<a   href="../help/help.php">ВОПРОСЫ</a>
+<div class="hr"> <hr> </div>
+<a style="color:red;" href="select_group.php">УПРАВЛЕНИЕ ГРУППОЙ</a>
+<div class="hr"> <hr> </div>
+<a href="../../inc/singup/logout.php">ВЫЙТИ</a>
 </div>
 
 

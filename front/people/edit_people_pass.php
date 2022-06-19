@@ -29,17 +29,20 @@ foreach ($users as $users) {
 </head>
 
 <body class="body-white">
- 
+<header class="header">
     <div class="container-up">
-      <div class="podcont-up" style="display: flex;align-items:center;margin-left:10px; padding-right:5px;"> 
+      <div>
+      <!-- <div class="podcont-up" style="display: flex;align-items:center;margin-left:10px; padding-right:5px;">  -->
        
-      <img style="border-radius:30px;" src="../../<?=$user_pic?>" width="50px" alt="">
+      <img style="border-radius:30px;" src="../../<?=$user_pic?>" width="50px" alt=""></div>
       <div style="width: 10px;"></div>
       <?php echo($_SESSION['user']['fio']);?>
-      </div>
+      </div>  
+      <div>
         <img src="../../style/img/image5.png" alt="">
-        
+        </div>
 </div>
+</header>
   <div class="sidenav">
   <div class="hr"> <hr> </div>
 
@@ -47,35 +50,36 @@ foreach ($users as $users) {
   <a  href="../../admin_page.php">ЛИЧНЫЙ КАБИНЕТ</a>
   <div class="hr"> <hr> </div>
   <?php if($status=="admin"){ ?>
-  <a style="color:red;" href="allpeople.php">СПИСОК ПОЛЬЗОВАТЕЛЕЙ</a>
+  <a style="color:red;"  href="allpeople.php">СПИСОК ПОЛЬЗОВАТЕЛЕЙ</a>
   <div class="hr"> <hr> </div> 
   <?php } ?>
-  <a href="front/kurs/kurses.php">РАЗДЕЛЫ</a>
+  <a href="../kurs/kurses.php">РАЗДЕЛЫ</a>
   <div class="hr"> <hr> </div>
   <?php if($status=="admin"){ ?>
-  <a href="front/test/tests.php">ТЕСТЫ</a>
+  <a href="../test/tests.php">ТЕСТЫ</a>
   <?php } ?>
   <div class="hr"> <hr> </div>
-  <a href="front/otchet/otchet_fordir.php">ОТЧЕТЫ</a>
+  <a href="../otchet/otchet_fordir.php">ОТЧЕТЫ</a>
   <div class="hr"> <hr> </div>
-  <a href="front/term/term.php">БАЗА ЗНАНИЙ</a>
+  <a href="../term/term.php">БАЗА ЗНАНИЙ</a>
   <div class="hr"> <hr> </div>
-  <a  href="front/group/group.php">ГРУППЫ</a>
+  <a  href="../group/group.php">ГРУППЫ</a>
   <div class="hr"> <hr> </div>
-  <a href="front/signinup/admin_signin.php">ЗАРЕГИСТРИРОВАТЬ ЧЕЛОВЕКА</a>
+  <a href="../signinup/admin_signin.php">ЗАРЕГИСТРИРОВАТЬ ЧЕЛОВЕКА</a>
   <div class="hr"> <hr> </div>
-<a href="front/kurs/add_kurs.php">ДОБАВИТЬ РАЗДЕЛ</a>
+<a href="../kurs/add_kurs.php">ДОБАВИТЬ РАЗДЕЛ</a>
 <div class="hr"> <hr> </div>
-<a href="front/help/help.php">ВОПРОСЫ</a>
+<a href="../help/help.php">ВОПРОСЫ</a>
 <div class="hr"> <hr> </div>
-<a href="front/group/select_group.php">УПРАВЛЕНИЕ ГРУППОЙ</a>
+<a href="../group/select_group.php">УПРАВЛЕНИЕ ГРУППОЙ</a>
 <div class="hr"> <hr> </div>
-<a href="inc/singup/logout.php">ВЫЙТИ</a>
+<a href="../../inc/singup/logout.php">ВЫЙТИ</a>
 </div>
+
 <div class="main">
-  <div class="pust-blok">
-    
-  </div>
+<h1 class="name-of">
+   Изменение пароля
+  </h1>
 <?php 
 $people = mysqli_query($connect, "SELECT * FROM `user` WHERE `id_user`='$id' ");
 		$people = mysqli_fetch_all($people);

@@ -30,7 +30,7 @@ $number=$_POST['number'];
 
 // echo($number);
 mysqli_query($connect,"INSERT INTO `lesson` (`id_lesson`, `name`, `text`, `creator`, `id_kurs`,`number`) VALUES (NULL, '$name', '$text', '$creator', '$id_kurs','$number')");
-header('Location:../../front/kurs/edit_kurs.php?id='.$id_kurs);
+header('Location:../../front/kurs/kurs.php?id='.$id_kurs);
 
 
 ?>

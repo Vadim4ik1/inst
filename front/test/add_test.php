@@ -6,19 +6,27 @@ $id=$_GET['id'];
 
 $kurs = mysqli_query($connect, "SELECT * FROM `lesson` WHERE `id_lesson`='$id' ");
 $kurs = mysqli_fetch_all($kurs);
-echo($kurs);
+
 foreach ($kurs as $kurs) { 
     $id_kurs=$kurs[4];
 }
 $idt = mysqli_query($connect, "SELECT * FROM `test_name` WHERE `id_lesson`='$id' ");
 $idt = mysqli_fetch_all($idt);
-echo($kurs);
+
 foreach ($idt as $idt) { 
     $id_test=$idt[0];
 }
-echo($id_kurs);
-?>
 
+$id_user=$_SESSION['user']['id_user'];
+$user_id=$_SESSION['user']['fio'];
+$user_gr=$_SESSION['user']['groupp'];
+$users = mysqli_query($connect, "SELECT * FROM `user` WHERE `id_user`='$id_user' ");
+$users = mysqli_fetch_all($users);
+foreach ($users as $users) {
+  $status = $users[4];
+  $user_pic=$users[3];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,39 +42,58 @@ echo($id_kurs);
     <title>Document</title>
 </head>
 
-<body>
-<div class="container-up">
-    <?php  echo($_SESSION['user']['fio']);?>
+<body class="body-white">
+<header class="header">
+    <div class="container-up">
+      <div>
+      <!-- <div class="podcont-up" style="display: flex;align-items:center;margin-left:10px; padding-right:5px;">  -->
+       
+      <img style="border-radius:30px;" src="../../<?=$user_pic?>" width="50px" alt=""></div>
+      <div style="width: 10px;"></div>
+      <?php echo($_SESSION['user']['fio']);?>
+      </div>  
+      <div>
         <img src="../../style/img/image5.png" alt="">
-    </div>
-    <div class="sidenav">
+        </div>
+</div>
+</header>
+  <div class="sidenav">
   <div class="hr"> <hr> </div>
-  <a href="#about"><?= $_SESSION['user']['groupp']?></a>
+
+
+  <a  href="../../admin_page.php">ЛИЧНЫЙ КАБИНЕТ</a>
   <div class="hr"> <hr> </div>
-  <a href="../../admin_page.php">ЛИЧНЫЙ КАБИНЕТ</a>
-  <div class="hr"> <hr> </div>
+  <?php if($status=="admin"){ ?>
   <a href="../people/allpeople.php">СПИСОК ПОЛЬЗОВАТЕЛЕЙ</a>
+  <div class="hr"> <hr> </div> 
+  <?php } ?>
+  <a   href="../kurs/kurses.php">РАЗДЕЛЫ</a>
   <div class="hr"> <hr> </div>
-
-  <a  style="color:red;"  href="../kurs/kurses.php">РАЗДЕЛЫ</a>
-
+  <?php if($status=="admin"){ ?>
+  <a style="color:red;"  href="tests.php">ТЕСТЫ</a>
+  <?php } ?>
   <div class="hr"> <hr> </div>
-  <a href="#contact">ТЕСТЫ</a>
-  <div class="hr"> <hr> </div>
-  <a href="#contact">ОТЧЕТЫ</a>
+  <a href="../otchet/otchet_fordir.php">ОТЧЕТЫ</a>
   <div class="hr"> <hr> </div>
   <a href="../term/term.php">БАЗА ЗНАНИЙ</a>
   <div class="hr"> <hr> </div>
   <a  href="../group/group.php">ГРУППЫ</a>
-  <a href="../signinup/admin_signin.php">зарегать человека</a> <br>
-<a href="../kurs/add_kurs.php">Добавить курс</a> <br>
-<a href="../signinup/signin.php">Удалить курс</a> <br>
-<a href="../inc/singup/logout.php">выйти</a>
+  <div class="hr"> <hr> </div>
+  <a href="../signinup/admin_signin.php">ЗАРЕГИСТРИРОВАТЬ ЧЕЛОВЕКА</a>
+  <div class="hr"> <hr> </div>
+<a href="../kurs/add_kurs.php">ДОБАВИТЬ РАЗДЕЛ</a>
+<div class="hr"> <hr> </div>
+<a href="../help/help.php">ВОПРОСЫ</a>
+<div class="hr"> <hr> </div>
+<a href="../group/select_group.php">УПРАВЛЕНИЕ ГРУППОЙ</a>
+<div class="hr"> <hr> </div>
+<a href="../../inc/singup/logout.php">ВЫЙТИ</a>
 </div>
-
-<div class="main-lec">
+<div class="main">
+    <h1 class="name-of">Создание теста</h1>
 
 <form action="../../inc/test/add_test.php" method="post" enctype="multipart/form-data">
+    <div class="secion-add" >
     <p>Номер вопроса
 <select name="number_question" id="">
     <option value="1">1</option>
@@ -90,35 +117,37 @@ echo($id_kurs);
 <input type="hidden" value="<?= $id?>" name="id_lesson">
 <input type="hidden" value="<?= $id_test?>" name="id_test">
 <div id="demo">
-<p>Вопрос </p><input type="text" name="question"><br>
-
+    <div id="question" class="disp-none">
+<p>Вопрос <input type="text" name="question"><br></p>
+</div>
 <div id="true_answer" class="disp-none">
-<p>Правильный ответ<input type="text" name="true_answer"></p><br>
+<p>Правильный ответᅠᅠ<input type="text" name="true_answer"></p>
 </div>
 <div id="true_answer_2" class="disp-none">
-<p>Правильный ответ 2<input type="text" name="true_answer_2"></p><br>
+<p>Правильный ответ 2ᅠ<input type="text" name="true_answer_2"></p>
 </div>
 <div id="true_answer_3" class="disp-none">
-<p>Правильный ответ 3<input type="text" name="true_answer_3"></p><br>
+<p>Правильный ответ 3ᅠ<input type="text" name="true_answer_3"></p>
 </div>
 <div id="wrong_answer" class="disp-none">
-<p>Неправильный ответ <input type="text" name="wrong_answer" id="wrong_answer"></p><br>
+<p>Неправильный ответᅠ<input type="text" name="wrong_answer" id="wrong_answer"></p>
 </div>
 <div id="wrong_answer_2" class="disp-none">
-<p>Неправильный ответ 2<input type="text" name="wrong_answer_2" id="wrong_answer_2"></p><br>
+<p>Неправильный ответ 2<input type="text" name="wrong_answer_2" id="wrong_answer_2"></p>
 </div>
 <div id="wrong_answer_3" class="disp-none">
-<p>Неправильный ответ 3 <input type="text" name="wrong_answer_3" id="wrong_answer_3"></p><br>
+<p>Неправильный ответ 3<input type="text" name="wrong_answer_3" id="wrong_answer_3"></p>
 </div>
-
-<button type="submit">Добавить вопрос</button>
+<div class="but-in-test">
+<button class="button-inlec-back" type="submit">Добавить вопрос</button></div>
 <!-- <a href="">Закрыть тест</a> -->
-
+</div>
 </form>
 
 <script>    
 function myFunction() {
   var x = document.getElementById("mySelect").value;
+  var question = document.getElementById("question");
   var element_true_answer = document.getElementById("true_answer");
   var element_true_answer_2 = document.getElementById("true_answer_2");
   var element_true_answer_3 = document.getElementById("true_answer_3");
@@ -127,7 +156,7 @@ function myFunction() {
   var element_wrong_answer_3 = document.getElementById("wrong_answer_3");
 
   if (x == "radio") {
-
+    question.classList.remove('disp-none'); 
     element_true_answer.classList.remove('disp-none'); 
     element_true_answer_2.classList.add('disp-none'); 
     element_true_answer_3.classList.add('disp-none'); 
@@ -136,6 +165,7 @@ function myFunction() {
     element_wrong_answer_3.classList.remove('disp-none'); 
 
 } else if (x == "check"){
+    question.classList.remove('disp-none'); 
     element_true_answer.classList.remove('disp-none'); 
     element_true_answer_2.classList.remove('disp-none'); 
     element_true_answer_3.classList.remove('disp-none'); 

@@ -12,7 +12,7 @@ echo("Порядковый номер: ");
 echo($number);
 
 mysqli_query($connect,"UPDATE `lesson` SET `number`='$number' WHERE `id_lesson`='$id_lesson' ");
-// header('Location:../../front/kurs/edit_kurs.php?id='.$id_kurs);
+header('Location:../../front/kurs/edit_kurs.php?id='.$id_kurs);
 
 
 ?>

@@ -29,7 +29,11 @@ body{
     font-family: 'Montserrat', sans-serif;
 }
 .body-white{
-    background-color: #E7E9E9;;
+    background-color: #E7E9E9;
+}
+.but-inlec{
+    display: flex;
+    justify-content: space-around;
 }
 .selected{
     color:red;
@@ -260,9 +264,46 @@ height: 40px;
     align-items: center;
     justify-content: center;
 }
-
+.block-inedit{
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    border-radius: 10px;
+    width: 70%;
+    margin-left: 15%;
+    padding: 10px;
+    align-items: center;
+    border: 0.3px solid black;
+}
+.secion-add{
+    background-color: white;
+    border-radius: 10px;
+    width: 50%;
+    margin-left: 20%;
+    padding: 10px;
+    border: 0.3px solid black;
+    
+}
+.secion-add input{
+    height: 35px;
+    border: 0.3px solid black;
+    border-radius: 4px;
+    margin-left: 10px;
+    
+}
+.but-in-test{
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+.secion-add input:focus{
+    border-radius: 4px;
+    background-color:  #E7E9E9;
+    border: 0.3px solid black;
+    transition: all 0.4s ease;
+}
 .sidenav {
-    margin-top: 84px;
+    /* margin-top: 84px; */
     height: 100%;
     width: 367px;
     position: fixed;
@@ -271,8 +312,7 @@ height: 40px;
     left: 0;
     background-color: black;
     overflow-x: hidden;
-    padding-top: 20px;
-
+    padding-top: 100px;
 }
 .hr{ 
     border: solid 0.3px;
@@ -319,6 +359,22 @@ height: 40px;
     padding: 0px 10px;
 
 }
+.but-deys-lec{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    border: 0.5px solid transparent;
+    background-color:black ;    
+    border-radius: 4px;
+    padding: 11px;
+}
+.but-deys-lec:hover{
+    color: black;
+    font-size: 18px;
+    border: 0.5px solid black;
+    background-color:#E7E9E9; 
+    transition: all 0.4s ease;
+}
 .link-inpeople{
     text-decoration: none;
     color:black;
@@ -326,6 +382,7 @@ height: 40px;
     align-items: center;
     padding: 7px;
 }
+
 .main-lec{
     background-color: #E7E9E9;
     margin-left: 367px; /* Same as the width of the sidenav */
@@ -342,23 +399,62 @@ height: 40px;
     background-color: black;
     justify-content: space-between;
     align-items: center;
-    z-index: 10;
+    z-index: 100;
+}
+.header{
+    padding: 10px;
+    display: flex;
+    color: white;
+    font-size: 20px;
+    background-color: black;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100; 
+}
+.container-osnova{
+    padding-top: 40px;
+ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.block-insecadd{
+    display: grid;
+   
 }
 
-.container-osnova{
-    padding-top: 90px;
-    margin-left: 20%;
-    max-width: 600px;
-    display: flex;
-    justify-content: space-between;
-    max-width: 90   0px;
+.mybut a{
+
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 19px;
+        line-height: 19px;
+        background: black;
+        color: #fff;
+        width: 190px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        border:1px solid black;
+        border-radius: 3px;
+    margin-left: 50%;
+
+}
+.mybut a:hover{
+    border: 0.5px solid black;
+    color:black;
+    background: white;
+    transition: all 0.4s ease;
+
 }
 .opisanie{
     /* padding-top: 20px; */
     font-weight: 400;
-    font-size: 16px;
+    font-size: 21px;
     line-height: 19px;
-
+    margin-left: 40px;
  }
  .obsh{
     margin-left: 20%;
@@ -371,7 +467,7 @@ height: 40px;
     border-collapse: collapse;
     width: 800px;
     margin-left: 40px;
-    font-size: 16px;
+    font-size: 18px;
   border-radius: 8px;
 }
 .tablica-user{
@@ -441,7 +537,7 @@ tr:nth-child(even) {
     background-color: black;
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 24px;
     line-height: 19px;
     width: 770px;
     height: 30px;
@@ -450,13 +546,26 @@ tr:nth-child(even) {
     margin-top: 20px;
     display: flex;
     align-items: center;
+    border-radius: 4px;
+    border: 0.5px solid transparent;
+    justify-content: space-between;
+}
+.button-razdel:hover{
+    color: black;
+    background-color: #E7E9E9;
+    border:0.5px solid black;
+    transition: all 0.4s ease;
+}
+.chern-text{
+    color: black;
+    float: right;
 }
 .button-razdel-podr{
-    color: white;
-    background-color: #424141;
+    color: black;
+    background-color: #c1c1c1;
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 19px;
     width: 663px;
     height: 50px;
@@ -466,6 +575,14 @@ tr:nth-child(even) {
     margin-top: 20px;
     display: flex;
     align-items: center;
+    border-radius: 4px;
+    border: 1px solid black;
+}
+.button-razdel-podr:hover{
+    border: 1px solid white;
+    transition: all 0.4s ease;
+    background-color: black;
+    color: white;
 }
 .text-lec{
     margin-top: 30px;
@@ -496,11 +613,7 @@ tr:nth-child(even) {
     border:1px solid black;
    
 }
-#circle-container {
-    width: 200px;
-    height: 200px;
-    margin: 50px auto;
-}
+
 .button-inlec-back{
     text-decoration: none;
     font-weight: 400;
@@ -517,13 +630,18 @@ tr:nth-child(even) {
     border-radius: 3px;
 }
 .button-inlec-back:hover{
-    border: 0.5px solid white;
+    border: 0.5px solid black;
     color:black;
     background: white;
     transition: all 0.4s ease;
 
 }
-
+.name-of{
+    color: black;
+    text-align: left;
+    transition: all 2s ease;
+    font-size: 48px;
+}
 #circle-container_1 {
     width: 200px;
     height: 200px;
@@ -639,31 +757,31 @@ tr:nth-child(even) {
     margin-top: 100px;
     position: absolute;
     top: 535px;
-    left: 506px;
+    left: 484px;
   }
   .contador_2{
     margin-top: 100px;
     position: absolute;
     top: 535px;
-    left: 852px;
+    left: 830px;
   }
   .contador_3{
     margin-top: 100px;
     position: absolute;
     top: 535px;
-    left: 1172px;
+    left: 1150px;
   }
   .contador_4{
     margin-top: 100px;
     position: absolute;
     top: 535px;
-    left: 1472px;
+    left: 1450px;
   }
   .contador_5{
     margin-top: 100px;
     position: absolute;
     top: 535px;
-    left: 1772px;
+    left: 1750px;
   }
   .box:after {
     content: '';
@@ -683,10 +801,13 @@ tr:nth-child(even) {
   .grafiki{
       display: flex;
       justify-content: space-around;
+      margin-top: 50px;
   }
   .inputs-red-test{
       display: flex;
       justify-content: space-around;
+      margin-top: 20px;
+      margin-left: -80px;
   }
   .text-lesson{
       margin:7px;
