@@ -275,6 +275,26 @@ height: 40px;
     align-items: center;
     border: 0.3px solid black;
 }
+.float-left{
+    display: flex;
+    justify-content: flex-start;
+}
+.float-right{
+    display: flex;
+    justify-content: flex-end;
+}
+.block-messages{
+
+    justify-content: space-around;
+    background-color: white;
+    border-radius: 10px;
+    width: 60%;
+    margin-left:auto;
+    margin-right:auto;
+    padding: 10px;
+    border: 0.3px solid black;
+    
+}
 .secion-add{
     background-color: white;
     border-radius: 10px;
@@ -423,7 +443,10 @@ height: 40px;
     display: grid;
    
 }
-
+.namecolor a{
+    color:red;
+    font-size: 60px;
+}
 .mybut a{
 
         text-decoration: none;
@@ -538,7 +561,7 @@ tr:nth-child(even) {
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
-    line-height: 19px;
+    /* line-height: 19px; */
     width: 770px;
     height: 30px;
     text-decoration: none;
@@ -815,9 +838,9 @@ tr:nth-child(even) {
     justify-content: space-around;
     align-items: center;
   }
-  .text-lesson textarea{
-      max-width: 700px;
-  }
+.secion-vopr{
+    display: flex;
+}
   .name-lesson{
     display: flex;
     justify-content: space-around;

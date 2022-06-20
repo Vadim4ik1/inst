@@ -16,5 +16,7 @@ $connect=mysqli_connect('localhost','root','','inst');
 
 
 ?>
+    <script src="https://cdn.tiny.cloud/1/sy4822opn2ji26gvdv5qtmglel3soeb60k72g5263o86ee0a/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

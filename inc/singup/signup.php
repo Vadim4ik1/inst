@@ -21,10 +21,10 @@ if (mysqli_num_rows($checkuser) > 0) {
     if($user['status']=='admin'){
     header('Location: ../../admin_page.php');
     }
-    if($user['status']=='Студент'){
-        header('Location: ../../index.php');
+    if($user['status']=='student'){
+        header('Location: ../../admin_page.php');
     }
-    if($user['status']=='Преподаватель'){
+    if($user['status']=='prepod'){
         header('Location: ../../admin_page.php');
     }
 }

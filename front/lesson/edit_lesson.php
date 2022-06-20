@@ -26,6 +26,8 @@ foreach ($users as $users) {
     <link rel="stylesheet" href="../../style/style.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
+
     
     <title>Document</title>
 </head>
@@ -90,7 +92,10 @@ foreach ($users as $users) {
           Название лекции <input type="text" name="name" value="<?=$lesson[1]?>">
         </div>
         <div class="text-lesson">
-          Текст лекции : <textarea name="text" id="" cols="30" rows="10"><?=$lesson[2]?></textarea>
+        <textarea name="text"><?=$lesson[2]?></textarea>
+                <script>
+                        CKEDITOR.replace( 'text' );
+                </script>
         </div>
         <div class="inputs-red-test">
           <a class="button-inlec-back" href="../../inc/lesson/delete_lesson.php?id=<?=$lesson[0]?>">Удалить лекцию</a>

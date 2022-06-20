@@ -29,7 +29,8 @@ foreach ($users as $users) {
     <link rel="stylesheet" href="../../style/style.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
+    <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
+
     <title>Document</title>
 </head>
 
@@ -80,11 +81,9 @@ foreach ($users as $users) {
 <div class="hr"> <hr> </div>
 <a href="inc/singup/logout.php">ВЫЙТИ</a>
 </div>
-  <div class="main">
+
   <h1 class="name-of">Добавление лекции</h1>
-
-
-
+<div class="main">
 
 
 
@@ -92,8 +91,11 @@ foreach ($users as $users) {
 <form style="display:grid; justify-content: center;" enctype="multipart/form-data" action="../../inc/lesson/add_lesson.php" method="POST">
 <input type="hidden" value="<?= $id ?>" name="id">
 Название лекции<input type="text" name="name"></p>
-Текст лекции<textarea name="text" id="" cols="30" rows="10"></textarea>
-<!-- <p>Видео лекции не работает<input type="file" name="video"></p> -->
+<textarea name="text"></textarea>
+                <script>
+                        CKEDITOR.replace( 'text' );
+                </script>
+                </div>
 <input type="hidden" value="<?= $number ?>" name="number">
 <div class="but-in-test">
 <input type="submit" class="button-inlec-back" value="Сохранить">
@@ -108,7 +110,6 @@ foreach ($users as $users) {
 
 
 
-  </div>
 </body>
 </html>
 

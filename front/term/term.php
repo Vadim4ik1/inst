@@ -125,15 +125,19 @@ foreach ($users as $users) {
     ?>
     <td><?=$term[3]?></td>
     <td><a href="../lesson/lesson.php?id=<?=$id_lesson?>"><?=$term[4]  ?></a></td>
+    <?php if($user=="admin" || $user=="prepod"){?>
     <td>
             <a href="edit_term.php?id=<?=$term[0]?>">Редактировать</a>
             <a href="../../inc/term/delete_term.php?id=<?=$term[0]?>">Удалить</a>
-            <?php }?>
+            <?php }}?></td>
     </tr>   
-  </table>
+  </table>  
+  <?php if($user=="admin" || $user=="prepod"){?>
+
   <div class="but-in-test" style="margin-right:35%;">
-            <a class="button-inlec-back" href="add_test.php?id=<?=$id_lesson?>">Добавить вопрос</a>
+            <a class="button-inlec-back" href="add_test.php?id=<?=$id_lesson?>">Добавить термин</a>
  </div>
+ <?php } ?>
  </div>
 
 

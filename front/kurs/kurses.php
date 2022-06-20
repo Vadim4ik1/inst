@@ -75,11 +75,24 @@ foreach ($users as $users) {
     <h1 class="name-of">Разделы</h1>
 <div class="container-razdels">
 <?php $cifra=1;
- $gr=$_SESSION['user']['groupp'];
- $kurs = mysqli_query($connect, "SELECT * FROM `kurs` WHERE `group`= '$gr' ");
-		$kurs = mysqli_fetch_all($kurs);
-		foreach ($kurs as $kurs) {
-
+if($status=="admin"){
+  $gr=$_SESSION['user']['groupp'];
+  $kurs = mysqli_query($connect, "SELECT * FROM `kurs` "); 
+}
+if($status=="student"){
+  $gr=$_SESSION['user']['groupp'];
+  $kurs = mysqli_query($connect, "SELECT * FROM `kurs` WHERE `group`= '$gr' ");
+}
+if($status=="student"){
+  $kurs = mysqli_query($connect, "SELECT * FROM `group` WHERE `prepod`= '$user_id' ");
+  $kurs = mysqli_fetch_all($kurs);
+foreach ($kurs as $kurs) {
+  $gr=$kurs[1];
+}
+  $kurs = mysqli_query($connect, "SELECT * FROM `kurs` WHERE `group`= '$gr' ");
+}
+$kurs = mysqli_fetch_all($kurs);
+foreach ($kurs as $kurs) {
             ?>
             <!-- <p>Название курса <br>
            Дата создания :<?=$kurs[2]  ?><br>

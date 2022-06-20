@@ -11,6 +11,7 @@ foreach ($users as $users) {
   $status = $users[4];
   $user_pic=$users[3];
 }
+unset($null);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,33 +100,40 @@ $people = mysqli_query($connect, "SELECT * FROM `user` WHERE `id_user`='$id' ");
             <p> Телефон: </p>
             <p> Почта: </p>
             <p> Логин: </p>
+            <p> Группа:</p>
+   
             </div>
             <div class="second-update">
            <input class="input-update" name="fio" type="text" value="<?=$people[1]?>">
            <input class="input-update" name="dateborn" type="text" value="<?=$people[2]?>">
            
-         <input style="margin-bottom: 10px;margin-top:-3px;" type="file" name="picture" src="../../<?=$people[3]?>" value="../../<?=$people[3]?>">
+            <input style="margin-bottom: 10px;margin-top:-3px;" type="file" name="picture" >
+            <!-- <img src="../../<?=$people[3]?>" alt=""> -->
              <input class="input-update" type="text" name="status" value="<?=$people[4]?>">
            <input  class="input-update" type="text" name="city" value="<?=$people[5]?>">
            <input class="input-update" type="text" name="phone" value="<?=$people[6]?>">
            <input  class="input-update" type="text" name="email" value="<?=$people[7]  ?>">
          <input  class="input-update" type="text" name="login" value="<?=$people[8]  ?>">
-         <div class="perevod">
-          <p> Перевести из  <input type="text" readonly  value="<?=$people[13]?>">
-            В
-            <select name="groupp" id="">
-            <option value="<?= $null?>">Нет группы</option>unset($null);
+      
+         <select name="groupp" id="">
+           
+            <option value="<?=$null?>">Нет группы</option>
                       <?php 
                       $gr = mysqli_query($connect, "SELECT * FROM `group` ");
                         $gr = mysqli_fetch_all($gr);
                         foreach ($gr as $gr) {
-                            ?>
-                        <option value="<?=$gr[1]?>"><?=$gr[1]?></option>
+                           if($gr[1]==$user_gr){?>
+                        <option selected value="<?=$gr[1]?>"><?=$gr[1]?></option>
+
+                          <?php }else{?>
+                                                    <option value="<?=$gr[1]?>"><?=$gr[1]?></option>
+
+                       <?php   }
+                           ?>
                         <?php } ?>
 
-                    </select></p>
-
-            </div></div></div>
+                    </select>
+            </div></div>
 <div class="butons-update">
 <input type="submit" class="button-inlec-back" value="СОХРАНИТЬ">
 <a class="button-inlec-back" href="allpeople.php" value="Назад">НАЗАД</a>

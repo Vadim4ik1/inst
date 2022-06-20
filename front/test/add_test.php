@@ -173,6 +173,7 @@ function myFunction() {
     element_wrong_answer_2.classList.remove('disp-none'); 
     element_wrong_answer_3.classList.remove('disp-none');
 } else if (x == "input"){
+    question.classList.remove('disp-none'); 
     element_true_answer.classList.remove('disp-none'); 
     element_true_answer_2.classList.add('disp-none'); 
     element_true_answer_3.classList.add('disp-none'); 

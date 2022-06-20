@@ -87,32 +87,38 @@ foreach ($users as $users) {
 
         <h1 class="name-of">Мои вопросы
         </h1>
-        <div class="block-insecadd">
+        <div class="secion-vopr">
         <div class="secion-add">
- МОИ РЕШЕННЫЕ ВОПРОСЫ:
-<?php $ms = mysqli_query($connect, "SELECT DISTINCT `thema` FROM `messages` WHERE `status`='resh' AND `author`='$id_user' ");
+                  МОИ РЕШЕННЫЕ ВОПРОСЫ:
+<?php
+
+$ms = mysqli_query($connect, "SELECT DISTINCT `thema` FROM `messages` WHERE `status`='resh' AND `author`='$user_id' OR `to`='$user_id' AND `status`='resh' ");
 		$ms = mysqli_fetch_all($ms);
+        $cifra_1=1;
 		foreach ($ms as $ms) { ?>
-            <a href="full_help_resh.php?id=<?=$ms[0]?>"><?= $ms[0] ?></a>
-      <?php  }?>
+                <?= $cifra_1 ?>.    <a href="full_help_resh.php?id=<?=$ms[0]?>"><?= $ms[0] ?></a>
+      <?php $cifra_1++;  }?>
       </div>
       <br>
       <div class="secion-add">
         
-       МОИ Нерешенные ВОПРОСЫ:
-<?php $ms = mysqli_query($connect, "SELECT DISTINCT `thema` FROM `messages` WHERE `status`='neresh' AND `author`='$id_user' ");
+    МОИ Нерешенные ВОПРОСЫ:
+<?php
+ $ms = mysqli_query($connect, "SELECT DISTINCT `thema` FROM `messages` WHERE `status`='neresh' AND `author`='$user_id' OR `to`='$user_id' AND `status`='neresh'  ");
 		$ms = mysqli_fetch_all($ms);
-      
-		foreach ($ms as $ms) {  ?>
-        
+        $cifra_2=1;
+		foreach ($ms as $ms) {
+              ?>
+        <?= $cifra_2 ?>.
             <a href="full_help.php?id=<?=$ms[0]?>"><?= $ms[0] ?></a>
-      <?php  }?> 
+      <?php $cifra_2++;  }?> 
       </div>
-      <br> <div class="mybut">
+      <br>
+      </div>
+      <div class="mybut">
       <a class="js-open-modal"  data-modal="1"class="button-inlec-back" href="">Задать вопрос</a>
      
      </div>
-      </div>
       </div>
   
   
