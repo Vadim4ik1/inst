@@ -88,6 +88,7 @@ $gotov=0;
 <div class="hr"> <hr> </div>
 <a href="front/group/select_group.php">УПРАВЛЕНИЕ ГРУППОЙ</a>
 <div class="hr"> <hr> </div>
+
 <a href="inc/singup/logout.php">ВЫЙТИ</a>
 </div>
 
@@ -129,7 +130,8 @@ $gotov=0;
    </div>
   <?php }?>
  </div>
- <?php if($status=="Студент"){ ?>
+ <a class="link-inpeople" href="front/people/edit_people_user.php?id=<?=$id_user?>">Редактировать</a>
+  <?php if($status=="Студент"){ ?>
  <div class="grafiki">
   
   <div class="circle">
