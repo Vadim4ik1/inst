@@ -2,7 +2,13 @@
 <?php
 session_start();
 require_once '../../connect/connect.php';
-$id=$_GET['id'];
+$id=$_POST['id_test'];
+$id_lesson=$_POST['id_lesson'];
+$idtest = mysqli_query($connect, "SELECT * FROM `test` WHERE `id_question`='$id' ");
+$idtest = mysqli_fetch_all($idtest);
+foreach ($idtest as $idtest) {
+  $id_test=$idtest[8];
+}
 $id_user=$_SESSION['user']['id_user'];
 $user_id=$_SESSION['user']['fio'];
 $user_gr=$_SESSION['user']['groupp'];
@@ -80,8 +86,15 @@ foreach ($users as $users) {
 
 
 <div class="main">
-  <h1 class="name-of">Изменение тестов
-  </h1>
+<div class="box-inmain">             
+ <h1 class="name-of">Изменение</h1>
+ <form action="edit_test.php" method="post" enctype="multipart/form-data">
+   <input type="hidden" name="id_test" value="<?=$id_test?>" >
+   <input type="hidden" value="<?=$id_lesson?>" name="id_lesson">
+
+   <input type="submit" class="button-inlec-back" value="Назад">
+ </form>
+</div>
 
 <?php  
 $oik = mysqli_query($connect, "SELECT * FROM `test` WHERE `id_question`='$id' ");

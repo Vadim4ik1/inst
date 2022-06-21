@@ -75,7 +75,10 @@ foreach ($users as $users) {
 <a href="../../inc/singup/logout.php">ВЫЙТИ</a>
 </div>
 <div class="main">
-    <h1 class="name-of">Создание теста</h1>
+<div class="box-inmain">             
+ <h1 class="name-of">Смена названия</h1>
+ <a class="button-inlec-back" href="../kurs/kurs.php?id=<?=$id?>">Назад</a>
+</div>
     <div class="block-inedit">
 <?php $kurs = mysqli_query($connect, "SELECT * FROM `kurs` WHERE `id_kurs`=$id ");
 		$kurs = mysqli_fetch_all($kurs);

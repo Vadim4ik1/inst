@@ -72,7 +72,11 @@ foreach ($users as $users) {
 <a href="../../inc/singup/logout.php">ВЫЙТИ</a>
 </div>
 <div class="main">
+  <div class="box-inmain">
     <h1 class="name-of">Разделы</h1>
+    <?php if($status=="admin"||$status=="prepod" ){?>
+    <a class="but-deys-lec" href="add_kurs.php">Добавить раздел</a></div>
+    <?php }?>
 <div class="container-razdels">
 <?php $cifra=1;
 if($status=="admin"){
@@ -83,7 +87,7 @@ if($status=="student"){
   $gr=$_SESSION['user']['groupp'];
   $kurs = mysqli_query($connect, "SELECT * FROM `kurs` WHERE `group`= '$gr' ");
 }
-if($status=="student"){
+if($status=="prepod"){
   $kurs = mysqli_query($connect, "SELECT * FROM `group` WHERE `prepod`= '$user_id' ");
   $kurs = mysqli_fetch_all($kurs);
 foreach ($kurs as $kurs) {

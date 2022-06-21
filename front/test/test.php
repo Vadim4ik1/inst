@@ -18,7 +18,10 @@ if($type_question=='check' &&(!empty($answer_1)) &&(empty($answer_2)) &&(empty($
 {
     mysqli_query($connect,"INSERT INTO `test_history` (`id_test_history`, `id_user`, `id_test`, `id_question`, `answer`, `type_question`, `type_test`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$type_question', NULL)");
 }
-
+<div class="box-inmain">             
+<h1 class="name-of">Редактирование номеров</h1>
+<a class="button-inlec-back" href="../kurs/kurs.php?id=<?=$id?>">Назад</a>
+</div>
 
 mysqli_query($connect,"INSERT INTO `test_history` (`id_test_history`, `id_user`, `id_test`, `id_question`, `answer`, `answer_2`, `answer_3`, `type_question`, `type_test`) VALUES (NULL,'$user_id','$id_test','$id_question','$answer','$answer_2','$answer_3','$type_question', NULL)");
                 $proverka_zapis = mysqli_query($connect, "SELECT * FROM `test_history` WHERE `id_test`=$id_test AND `id_question`='$id_question'");  

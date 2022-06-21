@@ -83,8 +83,10 @@ foreach ($users as $users) {
 
     <div class="main">
 
-        <h1 class="name-of">Добавление нового раздела
-        </h1>
+    <div class="box-inmain">             
+ <h1 class="name-of">Добавление раздела</h1>
+ <a class="button-inlec-back" href="kurses.php">Назад</a>
+</div>
         <div class="block-inedit" >
 <form action="../../inc/kurs/add_kurs.php" method="post" enctype="multipart/form-data">
 <p>Название курса<input type="text" name="name_kurs"></p>

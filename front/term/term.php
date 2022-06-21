@@ -78,7 +78,7 @@ foreach ($users as $users) {
 
 
 <div class="main">
-  <h1 class="name-of">Изменение термина
+  <h1 class="name-of">Термины
   </h1>
   <div class="pust-blok">
     
@@ -125,17 +125,17 @@ foreach ($users as $users) {
     ?>
     <td><?=$term[3]?></td>
     <td><a href="../lesson/lesson.php?id=<?=$id_lesson?>"><?=$term[4]  ?></a></td>
-    <?php if($user=="admin" || $user=="prepod"){?>
+    <?php if($status=="admin" || $status=="prepod"){?>
     <td>
             <a href="edit_term.php?id=<?=$term[0]?>">Редактировать</a>
             <a href="../../inc/term/delete_term.php?id=<?=$term[0]?>">Удалить</a>
             <?php }}?></td>
     </tr>   
   </table>  
-  <?php if($user=="admin" || $user=="prepod"){?>
+  <?php if($status=="admin" || $status=="prepod"){?>
 
   <div class="but-in-test" style="margin-right:35%;">
-            <a class="button-inlec-back" href="add_test.php?id=<?=$id_lesson?>">Добавить термин</a>
+            <a class="button-inlec-back" href="add_term.php">Добавить термин</a>
  </div>
  <?php } ?>
  </div>

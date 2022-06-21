@@ -79,8 +79,10 @@ foreach ($users as $users) {
 
 
 <div class="main">
-  <h1 class="name-of">Изменение термина
-  </h1>
+<div class="box-inmain">             
+ <h1 class="name-of">Изменение термина</h1>
+ <a class="button-inlec-back" href="term.php">Назад</a>
+</div>
   <div class="secion-add" >
 <form action="../../inc/term/update_term.php" method="post" enctype="multipart/form-data">
 <?php 
@@ -93,7 +95,8 @@ foreach ($term as $term) {
 <p>Термин
     <input type="text" name="name" value="<?= $term[1] ?>"></p>
 <p>Объяснение
-    <input type="text" name="text" value="<?= $term[2] ?>"></p>
+  <textarea  name="text" id="" cols="10" rows="5"><?= $term[2] ?></textarea>
+   </p>
             <?php }?>
         <select name="lesson" id="">
        <?php $les = mysqli_query($connect, " SELECT * FROM `lesson` ");

@@ -75,7 +75,10 @@ foreach ($users as $users) {
 <a href="../../inc/singup/logout.php">ВЫЙТИ</a>
 </div>
   <div class="main">
-  <h1 class="name-of">Редактирование порядковых номеров лекций</h1>
+  <div class="box-inmain">             
+ <h1 class="name-of">Редактирование номеров</h1>
+ <a class="button-inlec-back" href="../kurs/kurs.php?id=<?=$id?>">Назад</a>
+</div>
 <?php 
 
 

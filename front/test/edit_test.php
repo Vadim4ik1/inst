@@ -81,8 +81,10 @@ foreach ($users as $users) {
 
 
 <div class="main">
-  <h1 class="name-of">Изменение тестов
-  </h1>
+<div class="box-inmain">             
+ <h1 class="name-of">Изменение теста</h1>
+ <a class="button-inlec-back" href="tests.php">Назад</a>
+</div>
   <div class="pust-blok">
     
   </div>  
@@ -148,7 +150,15 @@ foreach ($users as $users) {
     <td>
         <?=$oik[11]?>
     </td> <?php $cifra++; ?>
-    <td><a href="edit_q.php?id=<?=$oik[0]?>">Изменить вопрос</a> </td>
+    <td>
+    <form action="edit_q.php" enctype="multipart/form-data" method="POST">
+              <input type="hidden" value="<?=$oik[0]?>" name="id_test">
+              <input type="hidden" value="<?=$id_lesson?>" name="id_lesson">
+              <input type="submit" value="Изменить">
+          </form>
+    <!-- <a href="edit_q.php?id=<?=$oik[0]?>">Изменить вопрос</a> -->
+  
+  </td>
 
 </tr>         
 

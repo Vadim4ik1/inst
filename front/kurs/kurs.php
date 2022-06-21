@@ -82,8 +82,10 @@ foreach ($users as $users) {
 		$kurs = mysqli_fetch_all($kurs);
 		foreach ($kurs as $kurs) {  
 
-            ?>   
+            ?>   <div class="box-inmain">
                <h1 class="name-of"><?=$kurs[1]?></h1>  
+              <a class="button-inlec-back" href="kurses.php">Назад</a>
+               </div>
                <?php if($status=="admin"||$status=="prepod"){ ?>
                 <div class="but-inlec">
                <a class="but-deys-lec" href="../lesson/add_lesson.php?id=<?=$kurs[0]?>">Добавить лекцию </a>

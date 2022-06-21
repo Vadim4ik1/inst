@@ -78,12 +78,15 @@ foreach ($users as $users) {
 
 
 <div class="main">
-  <h1 class="name-of">Изменение термина
-  </h1>
+<div class="box-inmain">             
+ <h1 class="name-of">Добавление термина</h1>
+ <a class="button-inlec-back" href="term.php">Назад</a>
+</div>
+  <div class="secion-add">
 <form enctype="multipart/form-data" action="../../inc/term/add_term.php" method="POST">
 
 <p>Термин<input type="text" name="name"></p>
-<p>Объяснение<input type="text" name="text"></p>
+<p>Объяснение<textarea name="text" id="" cols="15" rows="4"></textarea></p>
 К какой лекции крепить
 <select name="lesson" id="">
        <?php $les = mysqli_query($connect, " SELECT * FROM `lesson` ");
@@ -98,8 +101,10 @@ foreach ($users as $users) {
     
  <?php  } }?>
 </select>
-
-<input type="submit" value="Добавить">
+</div>
+<div class="but-in-test">
+<input class="button-inlec-back" type="submit" value="Добавить">
+</div>
 </form>
   </video>
 

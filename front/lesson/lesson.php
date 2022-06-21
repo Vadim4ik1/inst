@@ -19,7 +19,7 @@ $tn = mysqli_fetch_all($tn);
 foreach ($tn as $tn) { 
     $id_test=$tn[0];
 }
-$id_test=$_GET['id'];
+// $id_test=$_GET['id'];
 $id_user=$_SESSION['user']['id_user'];
 $user_id=$_SESSION['user']['fio'];
 $user_gr=$_SESSION['user']['groupp'];
@@ -118,9 +118,10 @@ foreach ($users as $users) {
        
                     <?php }?>
                     <?php
-                     $th = mysqli_query($connect, "SELECT `type_test` FROM `test_history` WHERE `id_user`='$id_user' AND `id_test`='$id_test'  LIMIT 1 ");
+                     $id_user=$_SESSION['user']['fio'];
+                     $th = mysqli_query($connect, "SELECT `type_test` FROM `test_history` WHERE `id_user`='$id_user' AND `id_test`='$id_test' LIMIT 1 ");
                      $th = mysqli_fetch_all($th);
-            
+                    //  echo($id_test);
                      foreach ($th as $th) { 
                         $th_ended=$th[0];
                      }
@@ -132,7 +133,7 @@ foreach ($users as $users) {
                         $lesson = mysqli_query($connect, "SELECT * FROM `test_name` WHERE `id_lesson`='$id_lesson'");
                         $lesson = mysqli_fetch_all($lesson);
                         foreach ($lesson as $lesson) {
-                
+                            echo($th_ended);
                             if(!empty($lesson[0])){
                                 $id_test=$lesson[0];
                                 ?>

@@ -81,8 +81,10 @@ foreach ($users as $users) {
 
 
   <div class="main">
-    <h1 class="name-of">Термин
-    </h1>
+  <div class="box-inmain">             
+ <h1 class="name-of">Управление группой</h1>
+ <a class="button-inlec-back" href="group.php">Назад</a>
+</div>
 
       <form style="display:grid; justify-content: center;" action="../../inc/group/update.php" method="post" enctype="multipart/form-data">
         <?php $term = mysqli_query($connect, "SELECT * FROM `group` WHERE `name`='$group' ");

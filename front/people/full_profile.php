@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../../connect/connect.php';
-$id_user=$_GET['id'];
+$id_user_from=$_GET['id'];
 $users = mysqli_query($connect, "SELECT * FROM `user` WHERE `id_user`='$id_user' ");
      $users = mysqli_fetch_all($users);
      foreach ($users as $users) {
@@ -84,16 +84,23 @@ foreach ($users as $users) {
 
 
             <div class="main">
-            <h1 class="name-of">
-   Просмотр профиля
-  </h1>
- <div class="container-osnova">
- <?php 
-     $users = mysqli_query($connect, "SELECT * FROM `user` WHERE `id_user`='$id_user' ");
+
+            <?php 
+     $users = mysqli_query($connect, "SELECT * FROM `user` WHERE `id_user`='$id_user_from' ");
      $users = mysqli_fetch_all($users);
      foreach ($users as $users) {
       $user_id=$users[1];?>
-   <div class="avatar">
+
+  <div class="box-inmain">
+            <h1 class="name-of">
+   Просмотр профиля
+  </h1>
+  <a  href="front/people/edit_people_user.php?id=<?=$id_user?>">Назад</a>
+  <a class="button-inlec-back-dlin" href="sbros.php?id=<?=$users[0]?>">Сбросить попытку теста</a>
+  </div>
+ <div class="container-osnova">
+ 
+       <div class="avatar">
      <img style="border-radius:30px;" src="../../<?=$users[3]?>" width="250px" alt="">
    </div>
    <div class="opisanie">
@@ -109,6 +116,7 @@ foreach ($users as $users) {
      <hr>
    </div>
   <?php }?>
+  
  </div>
  <div class="grafiki">
   

@@ -86,7 +86,10 @@ foreach ($users as $users) {
 <a href="../../inc/singup/logout.php">ВЫЙТИ</a>
 </div>
 <div class="main">
-    <h1 class="name-of">Создание теста</h1>
+<div class="box-inmain">             
+ <h1 class="name-of">Создание теста</h1>
+ <a class="button-inlec-back" href="../kurs/kurs.php?id=<?=$id?>">Назад</a>
+</div>
     <div class="block-inedit">
 <form action="../../inc/test/add_test_name.php" method="post" enctype="multipart/form-data">
 <p>Название теста <input type="text" name="test_name"></p>

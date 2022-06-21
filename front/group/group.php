@@ -38,7 +38,7 @@ $cifra=1;
             ?>
             <td>  <?=$cifra?></td>
         <td>
-                <a href="group_people.php?id=<?=$gr[1]?>"><?=$gr[1]?></a>
+                <a href="uprav.php?id=<?=$gr[1]?>"><?=$gr[1]?></a>
                 </td>
           
             <td> <?= $gr[2] ?></td>

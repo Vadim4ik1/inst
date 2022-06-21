@@ -82,10 +82,12 @@ foreach ($users as $users) {
 <a href="inc/singup/logout.php">ВЫЙТИ</a>
 </div>
 
-  <h1 class="name-of">Добавление лекции</h1>
+ 
 <div class="main">
-
-
+<div class="box-inmain">             
+ <h1 class="name-of">Добавление лекции</h1>
+ <a class="button-inlec-back" href="../kurs/kurs.php?id=<?=$id?>">Назад</a>
+</div>
 
 
 <form style="display:grid; justify-content: center;" enctype="multipart/form-data" action="../../inc/lesson/add_lesson.php" method="POST">

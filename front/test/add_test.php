@@ -90,7 +90,7 @@ foreach ($users as $users) {
 <a href="../../inc/singup/logout.php">ВЫЙТИ</a>
 </div>
 <div class="main">
-    <h1 class="name-of">Создание теста</h1>
+    <h1 class="name-of">Тест</h1>
 
 <form action="../../inc/test/add_test.php" method="post" enctype="multipart/form-data">
     <div class="secion-add" >
@@ -117,29 +117,33 @@ foreach ($users as $users) {
 <input type="hidden" value="<?= $id?>" name="id_lesson">
 <input type="hidden" value="<?= $id_test?>" name="id_test">
 <div id="demo">
-    <div id="question" class="disp-none">
-<p>Вопрос <input type="text" name="question"><br></p>
+    <div id="question"  class="disp-none">
+<p>Вопрос<textarea  name="question" id="" cols="14" rows="3"></textarea><br></p>
 </div>
-<div id="true_answer" class="disp-none">
-<p>Правильный ответᅠᅠ<input type="text" name="true_answer"></p>
+<div id="true_answer" class="disp-none">  
+<p>Правильный ответᅠᅠ  <textarea  name="true_answer" id="" cols="14" rows="3"></textarea></p>
 </div>
 <div id="true_answer_2" class="disp-none">
-<p>Правильный ответ 2ᅠ<input type="text" name="true_answer_2"></p>
+<p>Правильный ответ 2ᅠ<textarea name="true_answer_2" id="" cols="14" rows="3"></textarea></p>
 </div>
 <div id="true_answer_3" class="disp-none">
-<p>Правильный ответ 3ᅠ<input type="text" name="true_answer_3"></p>
+<p>Правильный ответ 3ᅠ<textarea name="true_answer_3" id="" cols="14" rows="3"></textarea></p>
 </div>
 <div id="wrong_answer" class="disp-none">
-<p>Неправильный ответᅠ<input type="text" name="wrong_answer" id="wrong_answer"></p>
+<p>Неправильный ответᅠ<textarea name="wrong_answer" id="wrong_answer" cols="14" rows="3"></textarea></p>
 </div>
 <div id="wrong_answer_2" class="disp-none">
-<p>Неправильный ответ 2<input type="text" name="wrong_answer_2" id="wrong_answer_2"></p>
+<p>Неправильный ответ 2<textarea name="wrong_answer_2" id="wrong_answer_2" cols="14" rows="3"></textarea></p>
 </div>
 <div id="wrong_answer_3" class="disp-none">
-<p>Неправильный ответ 3<input type="text" name="wrong_answer_3" id="wrong_answer_3"></p>
+<p>Неправильный ответ 3<textarea name="wrong_answer_3" id="wrong_answer_3" cols="14" rows="3"></textarea></p>
 </div>
 <div class="but-in-test">
 <button class="button-inlec-back" type="submit">Добавить вопрос</button></div>
+<!-- <a href="">Закрыть тест</a> -->
+</div>
+<div class="but-in-test">
+<a href="">Закончить создание теста</a>
 <!-- <a href="">Закрыть тест</a> -->
 </div>
 </form>

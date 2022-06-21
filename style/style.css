@@ -40,7 +40,47 @@ body{
 }
 .vopros{
     display: flex;
+    width: 30%;
 }
+.vopros input{
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.custom-checkbox{
+    height: 30px;
+    width: 30px;
+    margin-left: 10px;
+}
+.group p{
+    display: flex;
+    align-items: center;
+    /* padding-left: 3px; */
+    font-size: 15px;
+}
+.input_test{
+    background-color: white;
+    border:0.5px solid black;
+    border-radius: 5px;
+    padding: 3%;
+}
+.but_insert_answer{
+    margin-top: 10px;
+}
+.group{
+    background-color: white;
+    border:0.5px solid black;
+    border-radius: 5px;
+    padding: 3%;
+}
+.button_end_test{
+    display: flex;
+    justify-content: flex-end;
+}
+
+
 h1{
     font-style: normal;
     /* font-weight: 700; */
@@ -71,7 +111,10 @@ h1{
     justify-content: center;
 
 }
-
+.buttons{
+    display: flex;
+    justify-content: space-between;
+}
 
 .buttons-head a{
         width: 290px;
@@ -302,7 +345,6 @@ height: 40px;
     margin-left: 20%;
     padding: 10px;
     border: 0.3px solid black;
-    
 }
 .secion-add input{
     height: 35px;
@@ -652,7 +694,29 @@ tr:nth-child(even) {
     border:1px solid black;
     border-radius: 3px;
 }
+.button-inlec-back-dlin{
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 19px;
+    background: black;
+    color: #fff;
+    /* width: 190px; */
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border:1px solid black;
+    border-radius: 3px;
+}
 .button-inlec-back:hover{
+    border: 0.5px solid black;
+    color:black;
+    background: white;
+    transition: all 0.4s ease;
+
+}
+.button-inlec-back-dlin:hover{
     border: 0.5px solid black;
     color:black;
     background: white;
@@ -664,6 +728,11 @@ tr:nth-child(even) {
     text-align: left;
     transition: all 2s ease;
     font-size: 48px;
+}
+.box-inmain{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 #circle-container_1 {
     width: 200px;

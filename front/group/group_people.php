@@ -2,6 +2,9 @@
 session_start();
 require_once '../../connect/connect.php';
 $group=$_GET['id'];
+if(empty($group)){
+    $group=$_POST['group'];
+}
 $id_user=$_SESSION['user']['id_user'];
 $user_id=$_SESSION['user']['fio'];
 $user_gr=$_SESSION['user']['groupp'];
@@ -83,19 +86,28 @@ foreach ($users as $users) {
     <div class="main">
         <h1 class="name-of">Группа <?=$group?>
         </h1>
+        <div class="box-inmain">             
+        <h1 class="name-of">Группа <?=$group?>
+        </h1>
+ <a class="button-inlec-back" href="group.php">Назад</a>
+</div>
 <?php $term = mysqli_query($connect, "SELECT * FROM `user` WHERE `groupp`='$group' ");
 		$term = mysqli_fetch_all($term);
 		foreach ($term as $term) {
 
             ?>
             <div class="container-razdels">
-            <a class="button-razdel" style="width: 110%;" href="../people/full_profile.php?id=<?=$term[0]?>"><?=$term[1]?> <span class="chern-text">Нажмите, чтобы перейти</span></a></div>
+            <a class="button-razdel" style="width: 110%;">
+            <form action="full_profile.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="group" value="<?=$group?>">
+                <input type="hidden" name="id" value="<?=$term[0]?>">
+            <button type="submit"> <?=$term[1]?></button>
+            </form><span class="chern-text">Нажмите на имя, чтобы перейти</span>
+            </a>
                       <!-- <a href="change_group.php?id=<?=$term[0]?>">Перевести в другую группу</a> -->
 
-<br>
 
-            <?php }?>
-            <br>    
+            <?php }?> 
 
 </body>
 </html>

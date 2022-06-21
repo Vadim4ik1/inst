@@ -13,10 +13,10 @@ $email=$_POST['email'];
 $login=$_POST['login'];
 $password=$_POST['password'];
 $password=md5($password);
-// $groupp=$_POST['groupp'];
+$groupp=$_POST['groupp'];
 
 $path='uploads/Umolch.jpeg';
-mysqli_query($connect,"INSERT INTO `user` (`id_user`,`fio`, `date_born`, `picture`, `status`, `city`, `phone`, `email`, `login`, `password`, `date_reg`, `test_kolvo`, `kurs_kolvo`, `groupp`, `level`) VALUES (NULL,'$fio', '$date_born', '$path', '$status', '$city', '$phone', '$email', '$login', '$password', '$date_reg', NULL, NULL, NULL, NULL)");
+mysqli_query($connect,"INSERT INTO `user` (`id_user`,`fio`, `date_born`, `picture`, `status`, `city`, `phone`, `email`, `login`, `password`, `date_reg`, `test_kolvo`, `kurs_kolvo`, `groupp`, `level`) VALUES (NULL,'$fio', '$date_born', '$path', '$status', '$city', '$phone', '$email', '$login', '$password', '$date_reg', NULL, NULL, '$groupp', NULL)");
 
 
 print($fio);
@@ -42,5 +42,5 @@ print("\r");
 print($groupp);
 
 
-header('Location:../../index_.php');
+header('Location:../../front/people/allpeople.php');
 ?>

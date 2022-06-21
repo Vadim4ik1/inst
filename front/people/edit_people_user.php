@@ -136,7 +136,7 @@ $people = mysqli_query($connect, "SELECT * FROM `user` WHERE `id_user`='$id' ");
             </div></div>
 <div class="butons-update">
 <input type="submit" class="button-inlec-back" value="СОХРАНИТЬ">
-<a class="button-inlec-back" href="allpeople.php" value="Назад">НАЗАД</a>
+<a class="button-inlec-back" href="../../admin_page.php" value="Назад">НАЗАД</a>
 
 </div>
 

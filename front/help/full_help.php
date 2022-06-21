@@ -84,8 +84,12 @@ foreach ($users as $users) {
 
     <div class="main">
 
+  
+        <div class="box-inmain">
         <h1 class="name-of"><?= $id ?>
         </h1>
+              <a class="button-inlec-back" href="help.php">Назад</a>
+               </div>
         <div class="block-messages">
 <?php $ms = mysqli_query($connect, "SELECT * FROM `messages` WHERE `thema`='$id' ORDER BY `time` ");
 		$ms = mysqli_fetch_all($ms);

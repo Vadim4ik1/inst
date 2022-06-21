@@ -81,7 +81,7 @@ foreach ($users as $users) {
 
 
     <div class="main">
-        <h1 class="name-of">Термин
+        <h1 class="name-of">Управление группой
         </h1> 
   <?php 
         $term = mysqli_query($connect, "SELECT * FROM `group` WHERE `prepod`='$user_id' ");

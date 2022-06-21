@@ -72,9 +72,9 @@ $gotov=0;
   <div class="hr"> <hr> </div>
   <?php if($status=="admin"){ ?>
   <a href="front/test/tests.php">ТЕСТЫ</a>
-  <?php } ?>
-  <div class="hr"> <hr> </div>
-  <a href="front/otchet/otchet_fordir.php">ОТЧЕТЫ</a>
+
+  <div class="hr"> <hr> </div>  <?php } ?>
+  <a href="front/otchet/otchet_fordir.php">ОТЧЕТ</a>
   <div class="hr"> <hr> </div>
   <a href="front/term/term.php">БАЗА ЗНАНИЙ</a>
   <div class="hr"> <hr> </div>
@@ -86,8 +86,8 @@ $gotov=0;
 <div class="hr"> <hr> </div>
 <a href="front/help/help.php">ВОПРОСЫ</a>
 <div class="hr"> <hr> </div>
-<a href="front/group/select_group.php">УПРАВЛЕНИЕ ГРУППОЙ</a>
-<div class="hr"> <hr> </div>
+<!-- <a href="front/group/select_group.php">УПРАВЛЕНИЕ ГРУППОЙ</a>
+<div class="hr"> <hr> </div> -->
 
 <a href="inc/singup/logout.php">ВЫЙТИ</a>
 </div>
@@ -100,9 +100,12 @@ $gotov=0;
 
 
 <div class="main">
+  <div class="box-inmain">
 <h1 class="name-of">
     Личный кабинет
   </h1>
+  <a class="button-inlec-back" href="front/people/edit_people_user.php?id=<?=$id_user?>">Редактировать</a>
+  </div>
  <div class="container-osnova">
  <?php 
      $users = mysqli_query($connect, "SELECT * FROM `user` WHERE `id_user`='$id_user' ");
@@ -114,12 +117,12 @@ $gotov=0;
    <div class="opisanie">
      <p><?=$users[1]?></p>
      <hr>
-     <p>ДОЛЖНОСТЬ:<?php if($users[4]=="admin"){?>
+     <p><?php if($users[4]=="admin"){?>
       Администратор
-     <?php } if($users[4]=="Студент"){?>
-      Студент
-     <?php } if($users[4]=="Студент"){?>
-    Студент
+     <?php } if($users[4]=="student"){?>
+      Студент гр. <?= $users[13] ?>
+     <?php } if($users[4]=="prepod"){?>
+    Преподаватель
     <?php }?> </p>
      <hr>
      <p>ПОЧТА: <?=$users[7]?></p>
@@ -130,8 +133,7 @@ $gotov=0;
    </div>
   <?php }?>
  </div>
- <a class="link-inpeople" href="front/people/edit_people_user.php?id=<?=$id_user?>">Редактировать</a>
-  <?php if($status=="Студент"){ ?>
+  <?php if($status=="student"){ ?>
  <div class="grafiki">
   
   <div class="circle">

@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+$id_student=$_GET['id'];
 require_once '../../connect/connect.php';
 $id_user=$_SESSION['user']['id_user'];
 $user_id=$_SESSION['user']['fio'];
@@ -78,9 +78,13 @@ foreach ($users as $users) {
 
 
             <div class="main">
+
+  <div class="box-inmain">
   <h1 class="name-of">
-    Список пользователей
+    Сброс попытки
   </h1>
+              <a class="button-inlec-back" href="../../admin_page.php">На главную</a>
+               </div>
   <div class="pust-blok">
     
   </div>
@@ -94,63 +98,61 @@ foreach ($users as $users) {
       <td>ФИО</td>
       <td>ГРУППА</td>
       <td>РАЗДЕЛ</td>
+      <td>ЛЕКЦИЯ</td>
       <td>НАЗВАНИЕ ТЕСТА</td>
       <td>ОЦЕНКА</td>
 
     </tr>
    
     <?php $cifra=0;
-     $people = mysqli_query($connect, "SELECT * FROM `user` ");
+     $people = mysqli_query($connect, "SELECT * FROM `user` WHERE `id_user`='$id_student' ");
 		$people = mysqli_fetch_all($people);
-		foreach ($people as $people) {
-            $cifra++;
-                if(empty($people[13])){
-                    $people[13]="Не присвоена";
-                }
-                $birthday_timestamp = strtotime($people[2]);
-                $age = date('Y') - date('Y', $birthday_timestamp);
-                if (date('md', $birthday_timestamp) > date('md')) {
-                  $age--;
-                }
+    // echo($id_student);
+    $cifra=1;
+		foreach ($people as $people) { 
+      $id_user_test=$people[1];
+      $id_user_group=$people[13];
+      
+      $test = mysqli_query($connect, "SELECT DISTINCT `id_test` FROM `test_history` WHERE `id_user`='$id_user_test' AND `type_test`='ended' ");
+      $test = mysqli_fetch_all($test);
+      foreach ($test as $test) {
+      $id_test_end=$test[0]; 
+      } 
+      $from_test = mysqli_query($connect, "SELECT * FROM `test_name` WHERE `id_test`='$id_test_end' ");
+      $from_test = mysqli_fetch_all($from_test);
+      foreach ($from_test as $from_test) {
+        $id_user_lesson=$from_test[3];
+        // echo($id_test_end);
+        $from_les = mysqli_query($connect, "SELECT * FROM `lesson` WHERE `id_lesson`='$id_user_lesson' ");
+        $from_les = mysqli_fetch_all($from_les);
+        foreach ($from_les as $from_les) {
+          $id_user_kurs=$from_les[4];
+          $from_kurs = mysqli_query($connect, "SELECT * FROM `kurs` WHERE `id_kurs`='$id_user_kurs' ");
+          $from_kurs = mysqli_fetch_all($from_kurs);
 
-              
-                        ?>
+          foreach ($from_kurs as $from_kurs) {
 
-
+            $bacll = mysqli_query($connect, "SELECT * FROM `ball` WHERE `id_test`='$id_test_end' AND `id_user`='$id_user_test'   ");
+            $bacll = mysqli_fetch_all($bacll);
+            foreach ($bacll as $bacll) {
+      ?>
             <tr>
-            <td> <?=$cifra ?></td>
+         <td> <?=$cifra ?></td>
       <td> <?=$people[1] ?></td>
-      <td><?= $age ?></td>
-      <td><?=$people[5] ?></td>
-      <td><?=$people[4] ?></td>
-      <td><?=$people[7] ?></td>
-      <td><?=$people[6] ?></td>
-      <td><?=$people[13] ?></td>
-      <td  class="drop<?= $people[0]?>">Действия
-          <div style="display:none;	box-shadow: 0 4px 10px rgba(10, 20, 30, .4); position:absolute; background:#fff;" class="dropdown<?= $people[0]?>">   
-          <a class="link-inpeople" href="edit_people.php?id=<?=$people[0]?>">Редактировать</a>
-          <hr>
-            <a class="link-inpeople" href="edit_people_pass.php?id=<?=$people[0]?>">Поменять пароль</a>
-            <hr>
-            <a class="link-inpeople" href="full_profile.php?id=<?=$people[0]?>">Просмотр профиля</a>
-            <hr>
-            <a class="link-inpeople" href="../../inc/people/delete_profile.php?id=<?=$people[0]?>">Удалить профиль</a>
-        
-        </div> 
-     </td>      
-     </tr>
-     <script>
-    $(".drop<?= $people[0]?>")
-  .mouseover(function() {
-  $(".dropdown<?= $people[0]?>").show(300);
-});
-$(".drop<?= $people[0]?>")
-  .mouseleave(function() {
-  $(".dropdown<?= $people[0]?>").hide(300);     
-});
+      <td><?=$id_user_group?></td>
+      <td><?=$from_kurs[1] ?></td>
+      <td><?=$from_les[1] ?></td>
+      <td><?=$from_test[1]?></td>
+      <td><?=$bacll[3] ?></td>
+      <form action="../../inc/people/sbros.php" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id_test" value="<?=$id_test_end?>">
+        <input type="hidden" name="id_user" value="<?=$id_user_test?>">
+        <td> <input type="submit" value="Сбросить попытку"></td>   
+      </form>
 
-</script>
-    <?php }?>  
+     </tr>
+
+    <?php $cifra++; }}}} }?>  
     
   </table>
  </div>

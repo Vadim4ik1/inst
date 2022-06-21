@@ -6,6 +6,8 @@ date_default_timezone_set('UTC');
 $id_test=$_POST['id_test'];
 $user_id=$_SESSION['user']['fio'];
 $type_test="ended";
+mysqli_query($connect,"UPDATE `test_history` SET `type_test`='$type_test' WHERE `id_test`='$id_test' AND `id_user`='$user_id'");
+
 // echo($id_test.$user_id);
 // $count_ques=0;
 // $ques = mysqli_query($connect, "SELECT * FROM `test` WHERE `id_test`='$id_test'");
@@ -26,14 +28,15 @@ $type_test="ended";
 //             }   
 //         }
 // $id_test=$_POST['id_test'];
-$id_test=1;
+// $id_test=1;
 $user_id=$_SESSION['user']['fio'];
 $type_test="ended";
 $count_otvechennih=0;
 $count_pravilnih=0;
 $ball=0;
 $vsegovoprosov=0;
-
+echo($user_id);
+echo($id_test);
 // echo($id_test.$user_id);
 $count_ques=0;
 $ques = mysqli_query($connect, "SELECT * FROM `test` WHERE `id_test`='$id_test'");
@@ -127,7 +130,6 @@ $people = mysqli_query($connect, "SELECT * FROM `test_history` WHERE `id_test`='
         //     }
 
         // }
-mysqli_query($connect,"UPDATE `test_history` SET `type_test`='$type_test' WHERE `id_test`='$id_test' AND `id_user`='$user_id'");
 
 // mysqli_query($connect,"INSERT INTO `ball` SET values(`type_test`='$type_test' WHERE `id_test`='$id_test' AND `id_user`='$user_id'");
 
